@@ -4,19 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f71dff59e2701669df785bda6b8170e",
+    "content-hash": "c19a71bc8b44c14502f46b5f7575e470",
     "packages": [
         {
             "name": "clue/stream-filter",
             "version": "v1.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clue/php-stream-filter.git",
+                "url": "https://github.com/clue/stream-filter.git",
                 "reference": "5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/php-stream-filter/zipball/5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71",
+                "url": "https://api.github.com/repos/clue/stream-filter/zipball/5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71",
                 "reference": "5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71",
                 "shasum": ""
             },
@@ -1192,24 +1192,19 @@
         },
         {
             "name": "paytm/paytmchecksum",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paytm/Paytm_PHP_Checksum.git",
-                "reference": "a8cf04d7ae39867c22a8315fe0dee1a2b6be7b27"
+                "reference": "a032d3cbeb3846720c2c606b9f3c8057c355042e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paytm/Paytm_PHP_Checksum/zipball/a8cf04d7ae39867c22a8315fe0dee1a2b6be7b27",
-                "reference": "a8cf04d7ae39867c22a8315fe0dee1a2b6be7b27",
+                "url": "https://api.github.com/repos/paytm/Paytm_PHP_Checksum/zipball/a032d3cbeb3846720c2c606b9f3c8057c355042e",
+                "reference": "a032d3cbeb3846720c2c606b9f3c8057c355042e",
                 "shasum": ""
             },
             "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "ext-openssl": "*",
-                "monolog/monolog": "^1.24",
-                "netresearch/jsonmapper": "^1.4",
                 "php": ">=5.6.0"
             },
             "type": "library",
@@ -1239,7 +1234,7 @@
                 "paytm",
                 "signature"
             ],
-            "time": "2020-06-15T05:10:29+00:00"
+            "time": "2020-11-11T13:42:29+00:00"
         },
         {
             "name": "php-http/client-common",
@@ -3063,12 +3058,12 @@
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "shasum": ""
             },

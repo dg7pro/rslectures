@@ -27,16 +27,48 @@ class Mail
      */
     public static function send($to, $subject, $text, $html)
     {
-        $mg = new Mailgun(Config::MAILGUN_API_KEY);
+        $mg = new Mailgun($_ENV['MAILGUN_API_KEY']);
         //$domain = 'sandbox68ab10c762b14b2fa70a0e4637ef0822.mailgun.org';
-        $domain = Config::MAILGUN_DOMAIN;
+        $domain = $_ENV['MAILGUN_DOMAIN'];
 
 
-        $mg->sendMessage($domain, ['from'    => 'JustUnite <admin@jumatrimony.com>',
+        /*$mg->sendMessage($domain, ['from'    => 'RS Lectures <support@rslectures.com>',
                                    'to'      => $to,
                                    'subject' => $subject,
                                    'text'    => $text,
-                                   'html'    => $html]);
+                                   'html'    => $html]);*/
+
+
+        $mg->messages()->send($domain,['from'    => 'RS Lectures <support@rslectures.com>',
+                                         'to'      => $to,
+                                         'subject' => $subject,
+                                         'text'    => $text,
+                                         'html'    => $html]);
+
+    }
+
+    public static function sendNew($to, $subject, $text, $html)
+    {
+        //$mg = new Mailgun($_ENV['MAILGUN_API_KEY']);
+
+        $mg = Mailgun::create($_ENV['MAILGUN_API_KEY'], 'https://api.mailgun.net/v3/mg.mailgun.org');
+        //$domain = 'sandbox68ab10c762b14b2fa70a0e4637ef0822.mailgun.org';
+        $domain = $_ENV['MAILGUN_DOMAIN'];
+
+
+        /*$mg->sendMessage($domain, ['from'    => 'RS Lectures <support@rslectures.com>',
+                                   'to'      => $to,
+                                   'subject' => $subject,
+                                   'text'    => $text,
+                                   'html'    => $html]);*/
+
+
+        $mg->messages()->send($domain,['from'    => 'RS Lectures <support@rslectures.com>',
+            'to'      => $to,
+            'subject' => $subject,
+            'text'    => $text,
+            'html'    => $html]);
+
     }
 
     public static function sendEmailThroughPHPMailer(){

@@ -2,18 +2,18 @@
 
 @section('content')
 
-    <div class="container-fluid">
+    <div class="container">
 
         <div class="content">
-         <div class="row justify-content-center mt-5">
-            <div class="col-xl-5 col-lg-6 col-md-9">
+         <div class="row mt-5">
+            <div class="col-xl-5 col-lg-6 col-md-9 offset-md-1">
 
                 @include('layouts.partials.flash')
 
-                <div class="card card-default">
-                    <div class="card-header card-header-border-bottom justify-content-center bg-info text-white mb-3">
+                <div class="card card-default mb-5 my-form" style="background-color: #e5bbae">
+                    <div class="card-header card-header-border-bottom justify-content-center bg-secondary text-white mb-3 px-5">
                         <h3>Account Login</h3>
-                        <span class="mb-3 ml-2 badge badge-dark">Quick</span>
+                        <span class="mb-3 badge badge-dark">Quick</span>
                     </div>
                     <div class="card-body p-5">
                         <form action="{{'/Login/authenticate'}}" method="POST">
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary btn-lg btn-block mb-3" name="login-submit" type="submit">{{'Log in'}}</button>
+                            <button class="btn btn-info btn-lg btn-block mb-3" name="login-submit" type="submit">{{'Log in'}}</button>
                             <p>Don't have an account yet ?
                                 <a href="{{'/register/index'}}">Sign Up</a>
                             </p>
@@ -56,5 +56,7 @@
         </div>
 
     </div>
+
+    @include('layouts.footer2')
 
 @endsection

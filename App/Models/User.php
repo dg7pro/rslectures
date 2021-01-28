@@ -474,7 +474,7 @@ class User extends \Core\Model
         $text = View::getTemplate('Password/reset_email.txt', ['url' => $url]);
         $html = View::getTemplate('Password/reset_email.html', ['url' => $url]);
 
-        Mail::send($this->email, 'Password reset', $text, $html);
+        Mail::sendNew($this->email, 'Password reset', $text, $html);
     }
 
     /**
@@ -585,7 +585,7 @@ class User extends \Core\Model
         $text = View::getTemplate('register/activation_email.txt', ['url' => $url]);
         $html = View::getTemplate('register/activation_email.html', ['url' => $url]);
 
-        Mail::send($this->email, 'Account activation', $text, $html);
+        Mail::sendNew($this->email, 'Account activation', $text, $html);
         // TODO with mail exception
     }
 

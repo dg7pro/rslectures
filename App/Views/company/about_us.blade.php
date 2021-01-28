@@ -7,23 +7,42 @@
         <h1 class="mt-5 mb-4">About Us</h1>
 
         <p class="mb-2">
-            R. S. Publications - the society registered under Societies Act 1860 – is a nonprofit social welfare Organization.
-            The Just Unite is working for past 3 years against: poverty, social inequality, casteism and others social and
-            political evils prevailing in the Indian society. The R. S. Publications is working passionately to promote
-            unity among Indians and establish unifying force of nationality across the country</p>
+            R. S. Publications (which owns rslectures.com) - is the society registered under Societies Act 1860 – is a
+            reputed book publishing house located in Northern India, with record publication of more than 100 books,
+            magazines, journals and research papers in last 2 years.
+        </p>
 
-
-        <h4 class="mt-3 mb-2">Matrimonial Service</h4>
         <p class="mb-2">
-            In February 2020 we have launched the online matrimonial services <u>www.rslectures.com</u>  for all Indians across
-            the globe including NRIs. This web portal is free; any singles can search life-partner for themselves and make
-            use of our matrimonial services, for any period of time, till the find their appropriate soul mate. Only one
-            time INR 200 Rupees is charged per member, to bear our expenses or running the website as KYC charges- this
-            way we can also fight fake or non-genuine profiles and also able to provide best customer services up to their
-            satisfaction level</p>
+            Education is the process of the acquisition of knowledge and skills. R S Publications, not only involves in
+            planning, editing, acquisition, but we also works on copy editing, copyrighting, designing, art directing,
+            production managing, distributing, selling and promoting etc.
+        </p>
+
+        <p class="mb-2">
+            The publication is truly a difficult task, but not with us. It involves risk of not selling, published books.
+            Having finished your book and having it published are incredible moments, but between them, there may be some
+            halts disappointments. R S Publication plays an important role here by correct advising till publication of
+            actual no. of units, to marketing & advertisement. So if you want to publish your books please drop us a
+            message given at contacts given in footer section of the website.
+        </p>
 
 
+        <h4 class="mt-3 mb-2">About RSLectures.com</h4>
+
+        <p class="mb-2">
+            In year 2020, during the Corona Lockdown periods, we decided to go online and provide short notes and study
+            materials of various universities to our students through various e-learning modes such as docs, pdfs,
+            videos, and e-lectures, on their demands, and the result was launching of rslectures.com
+        </p>
+        <p class="mb-2">
+            This website is dedicated to online courses and lectures. Online mode of education is cheaper from student’s
+            point of views. It is faster also. The various courses available on this website is designed and drafted in
+            such a way that students get maximum marks in lesser effort. In year 2020, during the Corona Lockdown periods,
+            we decided to go online and provide short notes and study materials of various universities to our students
+            through various e-learning modes such as docs, pdfs, videos, and e-lectures, on their demands.</p>
 
     </div>
+
+    @include('layouts.footer2')
 
 @endsection

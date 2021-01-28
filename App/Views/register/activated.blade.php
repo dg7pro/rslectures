@@ -1,30 +1,39 @@
-@extends('layouts.app')
-
-@section('title', 'Page Title')
+@extends('layouts.boot')
 
 @section('content')
-    <div class="content">							<div class="row">
-        </div>
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
 
-                <div class="card card-default">
-                    <div class="card-header justify-content-center bg-info">
-                        <h2 class="text-dark" >Your Account is Active now</h2>
-                    </div>
-                    <div class="card-body pt-0 mt-5">
-                        <div class="row justify-content-center" style="font-size: 3rem;">
-                            <i class="mdi mdi-check-decagram"></i>
+    <div class="container">
+
+        <div class="content">
+            <div class="row mt-5">
+                <div class="col-md-7 offset-md-1">
+
+                    @include('layouts.partials.flash')
+
+                    <div class="card card-default card-lg mb-5 my-form" style="background-color: #e5bbae">
+                        <div class="card-header card-header-border-bottom justify-content-center bg-success text-white mb-3 px-5">
+                            <h3>Account Activated</h3>
+                            <span class="mb-3 badge badge-dark">Welcome</span>
                         </div>
-                        <div class="mt-3 mb-4 row justify-content-center">
-                            <h4 class="text-muted text-center">
-                                <span class="text-info ">You can now <a href="{{'/Login/index'}}">login to continue.</a> Happy surfing!</span>
-{{--                                <span class="text-info ">Success! Your account is now active. You can now <a href="{{'/Login/index'}}">log in</a></span>--}}
-                            </h4>
+                        <div class="card-body px-5">
+                            <p>Please login to continue:
+                                <a class="btn btn-success" href="{{'/Login/index'}}">Login Now</a>
+                            </p>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
     </div>
+
+    @include('layouts.footer2')
+
+@endsection
+
+@section('script')
+
+
+
 @endsection

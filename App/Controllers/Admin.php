@@ -9,6 +9,7 @@ use App\Flash;
 use App\Models\Content;
 use App\Models\File;
 use App\Models\Group;
+use App\Models\Media;
 use App\Models\Subject;
 use Core\View;
 
@@ -148,7 +149,7 @@ class Admin extends Administered
      */
     public function imageFolderAction(){
 
-        $pics = File::getAll();
+        $pics = Media::getAll();
         //var_dump($pics);
         View::renderBlade('admin.image_folder',['pics'=>$pics]);
 
@@ -163,11 +164,11 @@ class Admin extends Administered
         if (isset($_POST['submit'])) {
 
             //echo $_FILES['file']['tmp_name'];
-            if(File::insert($_FILES)){
+            if(Media::insert($_FILES)){
                 if(move_uploaded_file( $_FILES['file']['tmp_name'], 'media/'.$_FILES['file']['name'])){
 
                     echo "Photo Saved...!!";
-                    // TODO: redirect back to that page
+                    $this->redirect('/Admin/image-folder?CKEditor=mytextarea&CKEditorFuncNum=1&langCode=en');
                 }else{
                     echo "Upload Failed";
                 }

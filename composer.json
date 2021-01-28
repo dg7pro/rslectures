@@ -9,13 +9,13 @@
         "php-http/message": "^1.4",
         "ext-json": "*",
         "nesbot/carbon": "^2.34",
-        "paytm/paytm-pg": "^0.0.1",
+        "paytm/paytm-pg": "*",
         "ext-openssl": "*",
         "ext-curl": "*",
         "fzaninotto/faker": "^1.9",
         "phpmailer/phpmailer": "~5.2",
         "vlucas/phpdotenv": "^5.2",
-        "paytm/paytmchecksum": "^1.0"
+        "paytm/paytmchecksum": "^1.1"
     },
     "autoload": {
         "psr-4": {

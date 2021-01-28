@@ -29,4 +29,10 @@
 
     </div>
 
+    <br><br>
+    <br><br>
+    <br><br>
+
+    @include('layouts.footer2')
+
 @endsection

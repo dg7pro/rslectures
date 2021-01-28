@@ -22,7 +22,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @foreach($courses as $course)
-                            <a class="dropdown-item" href="{{'/page/list-subject?gid='.$course->gid}}">{{$course->name}}</a>
+                            <a class="dropdown-item" href="{{'/page/list-subject-new?gid='.$course->gid}}">{{$course->name}}</a>
                         @endforeach
                         @if(!empty($courses))
                             <div class="dropdown-divider"></div>

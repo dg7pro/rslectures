@@ -32,4 +32,6 @@
 
     </div>
 
+    @include('layouts.footer2')
+
 @endsection

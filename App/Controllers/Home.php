@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 
+use App\Mail;
 use App\Models\Content;
 use App\Models\File;
 use Core\Controller;
@@ -138,5 +139,24 @@ class Home extends Controller
 
 
     }
+
+    public function testSendingEmailAction(){
+
+        $to = 'getkabirjaiswal@gmail.com';
+        $sub = 'Test Sending Email Action';
+        $txt = 'This is just a test email send for RS Lectures Web App';
+        $htm = '<b><i>This is just a test email send for RS Lectures Web App through New</i></b>';
+
+        Mail::sendNew($to, $sub, $txt, $htm);
+
+    }
+
+    public function testJsPaytmAction(){
+
+        View::renderBlade('home/js_paytm');
+
+    }
+
+
 
 }

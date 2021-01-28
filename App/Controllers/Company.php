@@ -24,15 +24,15 @@ class Company extends Controller
     /**
      * Contact us
      */
-    public function contactUsAction(){
-        View::renderBlade('company.contact_us');
+    public function careerAction(){
+        View::renderBlade('company.career');
     }
 
     /**
      * Disclaimer
      */
-    public function disclaimerAction(){
-        View::renderBlade('company.disclaimer');
+    public function supportAction(){
+        View::renderBlade('company.support');
     }
 
     /**
@@ -40,13 +40,6 @@ class Company extends Controller
      */
     public function privacyPolicyAction(){
         View::renderBlade('company.privacy_policy');
-    }
-
-    /**
-     * Read more
-     */
-    public function readMoreAction(){
-        View::renderBlade('company.read_more');
     }
 
     /**

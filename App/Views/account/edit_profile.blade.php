@@ -15,9 +15,9 @@
                 <form action="{{'/register/create'}}" method="POST">
                     <h5>Email Address:</h5>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Account email" aria-label="Account email" aria-describedby="button-addon2">
+                        <input type="email" class="form-control" placeholder="Account email" value="{{$user->email}}" aria-label="Account email" aria-describedby="button-addon2" disabled>
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit" id="button-addon2">Edit</button>
+                            <button class="btn btn-primary" type="submit" id="button-addon2">Verify</button>
                         </div>
                     </div>
 
@@ -27,28 +27,28 @@
                 <form action="{{'/register/create'}}" method="POST" class="mt-5">
                     <h5>Mobile No:</h5>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="User's Mobile" aria-label="User's Mobile" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="User's Mobile" value="{{'+91 '.$user->mobile}}" aria-label="User's Mobile" aria-describedby="button-addon2" disabled>
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit" id="button-addon2">Edit</button>
+                            <button class="btn btn-primary" type="submit" id="button-addon2">Verify</button>
                         </div>
                     </div>
 
                 </form>
 
 
-                <form action="{{'/register/create'}}" method="POST" class="mt-5">
+                <form action="{{'/account/change-password'}}" method="POST" class="mt-5">
                     <h5>Change Password:</h5>
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Current Password">
+                        <input type="password" name="current_password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Current Password">
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="New Password">
+                        <input type="password" name="password1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="New Password">
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Confirm Password">
+                        <input type="password" name="password2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Confirm Password">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Update Password</button>
@@ -60,5 +60,7 @@
         </div>
 
     </div>
+
+    @include('layouts.footer2')
 
 @endsection

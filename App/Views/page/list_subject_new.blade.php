@@ -8,7 +8,7 @@
         <p>Select the subject you want to study...</p>
 
 
-        <div class="row mt-2">
+        <div class="row mt-2 mb-5">
             <div class="col-md-6">
                 <table class="table table-bordered table-stripped mb-5">
                     <thead class="thead-light">
@@ -28,6 +28,8 @@
             </div>
         </div>
     </div>
+
+    @include('layouts.footer2')
 
 @endsection
 

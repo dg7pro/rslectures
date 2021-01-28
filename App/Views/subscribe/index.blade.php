@@ -13,10 +13,9 @@
             <p class="lead">Please subscribe to the courses you want to study. It's built with utmost care so that students can obtain maximum marks out off it.</p>
         </div>
 
-        <div class="container">
-            <div class="row text-center">
 
-                @foreach($groups as $group)
+        <div class="row text-center mb-5">
+            @foreach($groups as $group)
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm" style="background-color: lightcyan">
                             <div class="card-header">
@@ -62,9 +61,9 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
+        </div>
 
-            @include('layouts.partials.footer')
+           {{-- @include('layouts.partials.footer')--}}
             {{--<footer class="pt-4 my-md-5 pt-md-5 border-top">
                 <div class="row">
                     <div class="col-12 col-md">
@@ -102,9 +101,11 @@
                     </div>
                 </div>
             </footer>--}}
-        </div>
+
 
     </div>
+
+     @include('layouts.footer2')
 
 
 

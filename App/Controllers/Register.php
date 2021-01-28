@@ -26,7 +26,7 @@ class Register extends Controller
         // TODO: Client side field validation
         $this->requireGuest();
         //header('Location: http://'.$_SERVER['HTTP_HOST'].'/Home/index');
-        View::renderBlade('register/index');
+        View::renderBlade('register/index2');
 
     }
 
@@ -35,8 +35,8 @@ class Register extends Controller
      */
     public function createAction()
     {
-        var_dump($_POST);
-        exit();
+       /* var_dump($_POST);
+        exit();*/
         $user = new User($_POST);
 
         //if($user->save()){
@@ -44,7 +44,7 @@ class Register extends Controller
         if($user_id=$user->save()){
 
             // Send the activation email
-            //$user->sendActivationEmail();
+            $user->sendActivationEmail();
 
             // Login the user
             session_regenerate_id(true);

@@ -10,20 +10,25 @@
             @include('layouts.partials.flash')
         </div>
 
-        <div class="row">
+        <div class="row mb-5">
             @foreach($courses2 as $course)
-            <div class="col-sm-6 mt-3">
+            <div class="col-sm-12 col-md-4 mt-3">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{$course->name}}</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="{{'/page/list-subject?gid='.$course->id}}" class="btn btn-primary">Continue Learning</a>
+                        <p class="card-text">{{$course->descr}}</p>
+                        <a href="{{'/page/list-subject-new?gid='.$course->id}}" class="btn btn-primary">Continue Learning</a>
                     </div>
                 </div>
             </div>
             @endforeach
 
         </div>
+
+        <br><br>
+        <br><br>
+        <br><br>
+
 
         {{-- Change the function in Controller to groupsNew()--}}
         {{--<div class="row">
@@ -43,5 +48,7 @@
 
 
     </div>
+
+    @include('layouts.footer2')
 
 @endsection

@@ -67,7 +67,19 @@ class Account extends Authenticated
 
     public function editProfileAction(){
 
-        View::renderBlade('account.edit_profile');
+        $user = Auth::getUser();
+        View::renderBlade('account.edit_profile',['user'=>$user]);
+
+
+    }
+
+    public function changePasswordAction(){
+
+        var_dump($_POST);
+        exit();
+
+        //$user = Auth::getUser();
+        //View::renderBlade('account.edit_profile',['user'=>$user]);
 
 
     }

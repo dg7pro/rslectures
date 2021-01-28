@@ -7,10 +7,10 @@
         <h1 class="mt-5 mb-4">Terms and Conditions</h1>
 
         <p class="mb-2"> The terms "We" / "Us" / "Our"/”Company” individually and collectively refer
-            to R.S. Publications and the terms "Visitor” ”User” refer to the users.</p>
+            to R.S. Lectures and the terms "Visitor” ”User” refer to the users.</p>
 
         <p class="mb-2">This page states the Terms and Conditions under which you (Visitor) may visit this
-            website (“Website”). Please read this page carefully. If you do not accept the Terms
+            website (“www.rslectures.com”). Please read this page carefully. If you do not accept the Terms
             and Conditions stated here, we would request you to exit this site. The business,
             any of its business divisions and / or its subsidiaries, associate companies or
             subsidiaries to subsidiaries or such other investment companies (in India or abroad)
@@ -61,7 +61,7 @@
         <p class="mb-2">The User unilaterally agree to indemnify and hold harmless, without objection, the Company,
             its officers, directors, employees and agents from and against any claims, actions
             and/or demands and/or liabilities and/or losses and/or damages whatsoever arising
-            from or resulting from their use of www.juMatrimony.com or their breach of the terms .
+            from or resulting from their use of www.rslectures.com or their breach of the terms .
         </p>
 
         <h4 class="mt-3 mb-2">LIABILITY </h4>
@@ -104,5 +104,7 @@
 
 
     </div>
+
+    @include('layouts.footer2')
 
 @endsection

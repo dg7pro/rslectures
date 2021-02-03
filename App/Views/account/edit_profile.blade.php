@@ -12,19 +12,24 @@
                 <h3 class="text-primary mb-5">Edit Profile</h3>
 
 
-                <form action="{{'/register/create'}}" method="POST">
+                <form action="{{'#'}}" method="POST">
                     <h5>Email Address:</h5>
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" placeholder="Account email" value="{{$user->email}}" aria-label="Account email" aria-describedby="button-addon2" disabled>
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit" id="button-addon2">Verify</button>
+                            @if(!$user->ev)
+                                <button class="btn btn-primary" type="submit" id="button-addon2">Verify</button>
+                            @else
+                                <button class="btn btn-success disabled" id="button-addon2" disabled>Verified</button>
+                            @endif
+
                         </div>
                     </div>
 
                 </form>
 
 
-                <form action="{{'/register/create'}}" method="POST" class="mt-5">
+                <form action="{{'#'}}" method="POST" class="mt-5">
                     <h5>Mobile No:</h5>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="User's Mobile" value="{{'+91 '.$user->mobile}}" aria-label="User's Mobile" aria-describedby="button-addon2" disabled>

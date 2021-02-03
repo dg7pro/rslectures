@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 
+use App\Auth;
+use App\Flash;
 use App\Mail;
 use App\Models\Content;
 use App\Models\File;
@@ -154,6 +156,23 @@ class Home extends Controller
     public function testJsPaytmAction(){
 
         View::renderBlade('home/js_paytm');
+
+    }
+
+    public function showUserAction(){
+
+        $user = Auth::getUser();
+        var_dump($user);
+
+
+    }
+
+    public function showLoginAction(){
+
+        Auth::logout();
+        Flash::addMessage('Confirm password does not match', Flash::DANGER);
+        $this->redirect('/login/index');
+
 
     }
 

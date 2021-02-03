@@ -5,6 +5,8 @@ namespace App\Controllers;
 
 
 use App\Auth;
+use App\Flash;
+use App\Models\User;
 use Core\View;
 
 /**
@@ -47,6 +49,7 @@ class Account extends Authenticated
 
 
         if(empty($courses2)){
+            Flash::addMessage('Oops! You have not subscribed to any course yet. Please subscribe below:', Flash::DANGER);
             $this->redirect('/Subscribe/index');
         }
         else{
@@ -75,12 +78,37 @@ class Account extends Authenticated
 
     public function changePasswordAction(){
 
-        var_dump($_POST);
-        exit();
+        //var_dump($_POST);
 
-        //$user = Auth::getUser();
-        //View::renderBlade('account.edit_profile',['user'=>$user]);
+        $user = Auth::getUser();
 
+        if(!password_verify($_POST['current_password'], $user->password_hash)){
+
+            Flash::addMessage('Current Password is not correct. If you forgot your current password please use forget password link to reset', Flash::DANGER);
+            $this->redirect('/account/edit-profile');
+            exit();
+        }
+
+        if (strlen($_POST['password1']) < 8) {
+
+            Flash::addMessage('Password must be at least 8 characters or more', Flash::DANGER);
+            $this->redirect('/account/edit-profile');
+            exit();
+        }
+
+        if ($_POST['password1'] !== $_POST['password2']) {
+
+            Flash::addMessage('Confirm password does not match', Flash::DANGER);
+            $this->redirect('/account/edit-profile');
+            exit();
+        }
+
+        if($user->updatePassword($_POST['password1'])){
+
+            Auth::logout();
+            $this->redirect('/login/again');
+
+        }
 
     }
 

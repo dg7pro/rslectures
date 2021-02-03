@@ -19,6 +19,7 @@ class Login extends Controller
     /**
      * Show the index page
      *
+     * @param string $msg
      * @return void
      */
     public function indexAction()
@@ -52,5 +53,16 @@ class Login extends Controller
             View::renderBlade('login/index',['uid'=>$_POST['uid'],'remember_me'=>$remember_me]);
         }
     }
+
+    public function againAction()
+    {
+
+        $this->requireGuest();
+
+        Flash::addMessage('Password changed successfully, please login again with new password', Flash::SUCCESS);
+
+        View::renderBlade('login/index');
+    }
+
 
 }

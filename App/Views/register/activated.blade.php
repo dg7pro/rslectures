@@ -16,8 +16,11 @@
                             <span class="mb-3 badge badge-dark">Welcome</span>
                         </div>
                         <div class="card-body px-5">
-                            <p>Please login to continue:
+                           {{-- <p>Please login to continue:
                                 <a class="btn btn-success" href="{{'/Login/index'}}">Login Now</a>
+                            </p>--}}
+                            <p>Click here to continue:
+                                <a class="btn btn-success" href="{{'/subscribe/index'}}">Next Step</a>
                             </p>
                         </div>
                     </div>

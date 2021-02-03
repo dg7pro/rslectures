@@ -320,6 +320,20 @@ class User extends \Core\Model
      * */
 
 
+    public function updatePassword($pwd){
+
+        $id = $this->id;
+        $ph = password_hash($pwd, PASSWORD_DEFAULT);
+
+        $sql = "UPDATE users SET password_hash=? WHERE id=?";
+        $pdo = Model::getDB();
+        $stmt=$pdo->prepare($sql);
+        return $stmt->execute([$ph,$id]);
+
+
+    }
+
+
     /**
      * @param $time
      * @return bool
@@ -471,8 +485,8 @@ class User extends \Core\Model
     {
         $url = 'http://' . $_SERVER['HTTP_HOST'] . '/password/reset/' . $this->password_reset_token;
 
-        $text = View::getTemplate('Password/reset_email.txt', ['url' => $url]);
-        $html = View::getTemplate('Password/reset_email.html', ['url' => $url]);
+        $text = View::getTemplate('password/reset_email.txt', ['url' => $url]);
+        $html = View::getTemplate('password/reset_email.html', ['url' => $url]);
 
         Mail::sendNew($this->email, 'Password reset', $text, $html);
     }

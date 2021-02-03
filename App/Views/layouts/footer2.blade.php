@@ -59,7 +59,7 @@
                         <h5>Latest News</h5>
                         <div class="kilimanjaro_blog_area">
                             <div class="kilimanjaro_thumb">
-                                <img class="img-fluid" src="{{'images/mgkv.jpg'}}" alt="">
+                                <img class="img-fluid" src="{{'/images/mgkv.jpg'}}" alt="">
 
                             </div>
                             {{--<a href="#">Your Blog Title Goes Here</a>--}}
@@ -70,7 +70,7 @@
                         </div>
                         <div class="kilimanjaro_blog_area">
                             <div class="kilimanjaro_thumb">
-                                <img class="img-fluid" src="{{'images/coding.jpg'}}" alt="">
+                                <img class="img-fluid" src="{{'/images/coding.jpg'}}" alt="">
                             </div>
                             <a href="#">Programming Languages</a>
                             <p class="kilimanjaro_date">Running...</p>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="kilimanjaro_blog_area">
                             <div class="kilimanjaro_thumb">
-                                <img class="img-fluid" src="{{'images/nielit.jpg'}}" alt="">
+                                <img class="img-fluid" src="{{'/images/nielit.jpg'}}" alt="">
                             </div>
                             <a href="#">Nielit Courses Available</a>
                             <p class="kilimanjaro_date">Running...</p>
@@ -119,7 +119,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p>© All Rights Reserved by <a href="#">Webublogoverflow.blogspot -(with all love)<i class="fa fa-love"></i></a></p>
+                    <p>© All Rights Reserved by <a href="#">R. S. Publications -(happy learning)<i class="fa fa-love"></i></a></p>
                 </div>
             </div>
         </div>

@@ -29,7 +29,13 @@ class Order extends Model
     }
 
 
-    public static function save($orderId,$userId,$userCode,$courseId,$course,$amount){
+    public static function save($userId,$arr){
+
+        $orderId = $arr['ORDER_ID'];
+        $userCode = $arr['CUST_ID'];
+        $courseId = $arr['COURSE_ID'];
+        $course = $arr['COURSE'];
+        $amount  = $arr['TXN_AMOUNT'];
 
         $sql = 'INSERT INTO orders (order_id,user_id,user_code,course_id,course,amount) values(?,?,?,?,?,?)';
         $pdo=Model::getDB();
@@ -38,6 +44,10 @@ class Order extends Model
 
     }
 
+    /**
+     * @param $data
+     * @return bool
+     */
     public static function updateOrderStatus($data){
 
         $oid = $data['ORDERID'];
@@ -45,7 +55,6 @@ class Order extends Model
         $sus = $data['STATUS'];
         $rco = $data['RESPCODE'];
         $rms = $data['RESPMSG'];
-        $tdt = $data['TXNDATE'] ?? '';
         $gnm = $data['GATEWAYNAME'] ?? '';
         $bnm = $data['BANKNAME'] ?? '';
         $pmo = $data['PAYMENTMODE'] ?? '';
@@ -55,15 +64,14 @@ class Order extends Model
                   txn_id=?, 
                   status=?, 
                   resp_code=?, 
-                  resp_msg=?, 
-                  txn_date=?, 
+                  resp_msg=?,                 
                   gateway_name=?,
                   bank_name=?,
                   payment_mode=?
                   WHERE order_id=?";
         $pdo=Model::getDB();
         $stmt=$pdo->prepare($sql);
-        return $stmt->execute([$tid,$sus,$rco,$rms,$tdt,$gnm,$bnm,$pmo,$oid]);
+        return $stmt->execute([$tid,$sus,$rco,$rms,$gnm,$bnm,$pmo,$oid]);
 
     }
 

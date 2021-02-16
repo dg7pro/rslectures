@@ -23,7 +23,7 @@
                                 <h4 class="my-0 font-weight-normal">{{$group['name']}}</h4>
                             </div>
                             <div class="card-body">
-                                <form action="{{'/Payment/redirect-payment'}}" method="POST">
+                                <form action="{{'/payment/redirect-payment'}}" method="POST">
 
                                     <input type="text" id="ORDER_ID" maxlength="20" size="20"
                                            name="ORDER_ID" autocomplete="off"
@@ -69,7 +69,7 @@
                                         @if(!$group['open'])
                                             <button onclick="showComingSoon()" type="button" class="btn btn-lg btn-block btn-dark">Coming Soon</button>
                                         @else
-                                            <button type="submit" class="btn btn-lg btn-block btn-dark">Subscribe</button>
+                                            <button type="submit" class="btn btn-lg btn-block btn-dark">Purchase</button>
                                         @endif
 
                                     @endif

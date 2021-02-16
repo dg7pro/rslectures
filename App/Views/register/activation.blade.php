@@ -2,9 +2,16 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container mt-5">
 
-        <div class="content">
+        <div class="mt-2">
+            @include('layouts.partials.flash')
+        </div>
+
+        <h3 class="text-success mt-5">Resend the Activation email</h3>
+        <p>Please <a href="#">click here</a> to resend the activation link</p>
+
+        {{--<div class="content">
             <div class="row mt-5">
                 <div class="col-md-7 offset-md-1">
 
@@ -16,9 +23,9 @@
                             <span class="mb-3 badge badge-dark">Welcome</span>
                         </div>
                         <div class="card-body px-5">
-                           {{-- <p>Please login to continue:
+                           --}}{{-- <p>Please login to continue:
                                 <a class="btn btn-success" href="{{'/Login/index'}}">Login Now</a>
-                            </p>--}}
+                            </p>--}}{{--
                             <p>Click here to continue:
                                 <a class="btn btn-success" href="{{'/subscribe/index'}}">Next Step</a>
                             </p>
@@ -27,10 +34,15 @@
                 </div>
 
             </div>
-        </div>
+        </div>--}}
 
     </div>
 
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
     @include('layouts.footer2')
 
 @endsection

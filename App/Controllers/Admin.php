@@ -89,8 +89,8 @@ class Admin extends Administered
     public function listUsersAction(){
 
         //$groups = Group::fetchAll();
-        View::renderBlade('admin.list_user');
-        // TODO: Integrate its view (design) page with our template
+        View::renderBlade('admin.list_user_new');
+
 
     }
 
@@ -100,6 +100,17 @@ class Admin extends Administered
     public function listFilesAction(){
 
         View::renderBlade('admin.list_files');
+
+    }
+
+    /**
+     * List all Payment Orders
+     */
+    public function paymentOrdersAction(){
+
+        //$groups = Group::fetchAll();
+        View::renderBlade('admin.payment_orders');
+
 
     }
 

@@ -29,7 +29,7 @@ class Group extends Model
 
     public static function fetchAllActive(): array
     {
-        $sql = "SELECT * FROM groups WHERE open=1";
+        $sql = "SELECT * FROM groups";
         $pdo=Model::getDB();
         $stmt=$pdo->prepare($sql);
         $stmt->execute();

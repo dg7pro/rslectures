@@ -10,6 +10,17 @@ use PDO;
 class File extends Model
 {
 
+    public static function getFileWithContent($content_id){
+
+        $sql = "SELECT * FROM files WHERE content_id = ?";
+        $pdo=Model::getDB();
+
+        $stmt=$pdo->prepare($sql);
+        $stmt->execute([$content_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
     public static function upload($arr){
 
         //var_dump($arr);

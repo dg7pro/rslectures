@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Payments/Revenue</h5>
                         <p class="card-text">Latest payment made and total Revenue generated is visible here</p>
-                        <a href="#" class="btn btn-success">Payment Statics</a>
+                        <a href="{{'/admin/payment-orders'}}" class="btn btn-success">Payment Statics</a>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
         </div>
 
 
-        <div class="card mt-5 mb-3">
+        {{--<div class="card mt-5 mb-3">
             <div class="card-header">
                 Search User
             </div>
@@ -67,7 +67,7 @@
                </div>
                 <div class="table-responsive" id="dynamic_content"></div>
             </div>
-        </div>
+        </div>--}}
 
     </div>
 
@@ -75,7 +75,7 @@
 
 @section('script')
 
-    <script>
+    {{--<script>
         $(document).ready(function (){
 
             load_data(1);
@@ -109,5 +109,5 @@
 
 
     </script>
-
+--}}
 @endsection

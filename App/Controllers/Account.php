@@ -89,9 +89,16 @@ class Account extends Authenticated
             exit();
         }
 
-        if (strlen($_POST['password1']) < 8) {
+        if (strlen($_POST['password1']) < 7) {
 
-            Flash::addMessage('Password must be at least 8 characters or more', Flash::DANGER);
+            Flash::addMessage('Password must be min 7 char long alphanumeric', Flash::DANGER);
+            $this->redirect('/account/edit-profile');
+            exit();
+        }
+
+        if (!preg_match("/^([A-Za-z\d@$!%*^#?&]){7,}$/",$_POST['password1'])) {
+
+            Flash::addMessage('Password must be min 7 char long alphanumeric & special chars like @$!%*^#?&', Flash::DANGER);
             $this->redirect('/account/edit-profile');
             exit();
         }

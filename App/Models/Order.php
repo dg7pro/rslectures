@@ -11,13 +11,30 @@ use PDO;
 class Order extends Model
 {
 
+    /**
+     * @param $oid
+     * @return mixed
+     */
+    public static function findByOrderId($oid){
 
-    public static function save($orderId,$userId,$amount){
+        $sql = "SELECT * FROM orders WHERE order_id= :oid";
+        $db = static::getDB();
 
-        $sql = 'INSERT INTO orders (order_id,user_id,amount) values(?,?,?)';
+        $stmt=$db->prepare($sql);
+        $stmt->bindParam(':oid',$oid,PDO::PARAM_STR);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
+
+    public static function save($orderId,$userId,$userCode,$courseId,$course,$amount){
+
+        $sql = 'INSERT INTO orders (order_id,user_id,user_code,course_id,course,amount) values(?,?,?,?,?,?)';
         $pdo=Model::getDB();
         $stmt=$pdo->prepare($sql);
-        return $stmt->execute([$orderId,$userId,$amount]);
+        return $stmt->execute([$orderId,$userId,$userCode,$courseId,$course,$amount]);
 
     }
 
@@ -28,12 +45,69 @@ class Order extends Model
         $sus = $data['STATUS'];
         $rco = $data['RESPCODE'];
         $rms = $data['RESPMSG'];
+        $tdt = $data['TXNDATE'] ?? '';
+        $gnm = $data['GATEWAYNAME'] ?? '';
+        $bnm = $data['BANKNAME'] ?? '';
+        $pmo = $data['PAYMENTMODE'] ?? '';
 
         //Process your transaction here as success transaction.
-        $sql="UPDATE orders SET txn_id=?, status=?, resp_code=?, resp_msg=? WHERE order_id=?";
+        $sql="UPDATE orders SET 
+                  txn_id=?, 
+                  status=?, 
+                  resp_code=?, 
+                  resp_msg=?, 
+                  txn_date=?, 
+                  gateway_name=?,
+                  bank_name=?,
+                  payment_mode=?
+                  WHERE order_id=?";
         $pdo=Model::getDB();
         $stmt=$pdo->prepare($sql);
-        return $stmt->execute([$tid,$sus,$rco,$rms,$oid]);
+        return $stmt->execute([$tid,$sus,$rco,$rms,$tdt,$gnm,$bnm,$pmo,$oid]);
+
+    }
+
+    public static function liveSearch($start, $limit){
+
+        $query = "SELECT * FROM orders";
+
+        if($_POST['query'] != ''){
+            $query .= '
+            WHERE id LIKE "%'.str_replace('', '%', $_POST['query']).'%" 
+            OR order_id LIKE "%'.str_replace('', '%', $_POST['query']).'%"
+            OR user_id LIKE "%'.str_replace('', '%', $_POST['query']).'%" 
+            ';
+        }
+
+        $query .= ' ORDER BY id DESC ';
+
+        $filter_query = $query . 'LIMIT '.$start.','.$limit.'';
+
+
+        $pdo=Model::getDB();
+        $stmt=$pdo->prepare($filter_query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+
+
+    }
+
+    public static function liveSearchCount(){
+
+        $query = "SELECT * FROM orders";
+
+        if($_POST['query'] != ''){
+            $query .= '
+            WHERE id LIKE "%'.str_replace('', '%', $_POST['query']).'%" 
+            OR order_id LIKE "%'.str_replace('', '%', $_POST['query']).'%"
+            OR user_id LIKE "%'.str_replace('', '%', $_POST['query']).'%" ';
+        }
+
+        $pdo=Model::getDB();
+        $stmt=$pdo->prepare($query);
+        $stmt->execute();
+        return $stmt->rowCount();
+
 
     }
 

@@ -251,13 +251,32 @@ class AjaxFileContent extends Administered
      */
     public function deleteFileContentRecord(){
 
+
         if(isset($_POST['id'])){
 
-            $re = Content::deleteRecord($_POST['id']);
-            if(!$re){
-                echo 'Something went Wrong';
-            }
-            echo 'Deleted Subject Permanently';
+            // Real code for deleting Content Records
+            /*$files = File::getFileWithContent($_POST['id']);
+            $_file_count = count($files);
+
+            if($_file_count > 0) {
+                $response['status'] = false;
+                $response['message'] = 'The content cannot be deleted because it is associated with file';
+            } else {
+
+                $re = Content::deleteRecord($_POST['id']);
+                if(!$re){
+                    $response['status'] = false;
+                    $response['message'] = 'Something is wrong with sql table, please inform web developer';
+                }else{
+                    $response['status'] = true;
+                    $response['message'] = 'Deleted content record permanently';
+                }
+
+            }*/
+
+            $response['status'] = false;
+            $response['message'] = 'Application says Don\'t delete anything, just change or modify it to continue';
+            echo json_encode($response);
 
         }
 

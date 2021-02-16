@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 
 use App\Flash;
+use App\Initials;
 use App\Models\Group;
 use App\Models\User;
 use App\Models\UserGroup;
@@ -35,8 +36,8 @@ class Register extends Controller
      */
     public function createAction()
     {
-       /* var_dump($_POST);
-        exit();*/
+        var_dump($_POST);
+        //exit();
         $user = new User($_POST);
 
         //if($user->save()){
@@ -46,9 +47,10 @@ class Register extends Controller
             // Send the activation email
             $user->sendActivationEmail();
 
-            // Login the user
-            session_regenerate_id(true);
-            $_SESSION['user_id'] = $user_id;
+            // Login the user. Comment out first 2 lines
+            /*session_regenerate_id(true);
+            $_SESSION['user_id'] = $user_id;*/
+
             //$_SESSION['course_id'] = $user->course_name;
 
             /*$ug = new UserGroup($_SESSION);
@@ -56,17 +58,18 @@ class Register extends Controller
 
             // Flash the success message
             Flash::addMessage('Account Created Successfully');
-            Flash::addMessage('Please check your email for activation link');
+            Flash::addMessage('Please check your email to activate your account');
 
 //            $this->redirect('/payment/new');
-            $this->redirect('/Account/welcome');
+            //$this->redirect('/Account/welcome');
+            $this->redirect('/register/success');
 
         }else{
 
             foreach($user->errors as $error){
                 Flash::addMessage($error,'danger');
             }
-            View::renderBlade('register.index',['arr'=>$_POST]);
+            View::renderBlade('register.index2',['arr'=>$_POST]);
 
         }
 
@@ -86,9 +89,17 @@ class Register extends Controller
      */
     public function activateAction()
     {
-        User::activate($this->route_params['token']);
+        $process = User::activate($this->route_params['token']);
 
-        $this->redirect('/register/activated');
+        if($process){
+            Flash::addMessage('Account activated successfully','success');
+            $this->redirect('/Login/index');
+        }else{
+            Flash::addMessage('Oops! Can\'t activate your account. Activation link is too old or wrong.','danger');
+            $this->redirect('/register/activation');
+        }
+
+
     }
 
     /**
@@ -96,9 +107,9 @@ class Register extends Controller
      *
      * @return void
      */
-    public function activatedAction()
+    public function activationAction()
     {
-        View::renderBlade('register/activated');
+        View::renderBlade('register/activation');
     }
 
 }

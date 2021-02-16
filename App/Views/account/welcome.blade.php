@@ -4,7 +4,7 @@
 
     <div class="container mb-5">
 
-        <h1 class="mt-5">Dashboard</h1>
+        <h1 class="text-info mt-5">Dashboard</h1>
 
         <div class="mt-2">
             @include('layouts.partials.flash')

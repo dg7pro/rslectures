@@ -19,19 +19,19 @@ class Login extends Controller
     /**
      * Show the index page
      *
-     * @param string $msg
      * @return void
      */
     public function indexAction()
     {
         // TODO: CSRF Protection of all forms
-        // TODO: Redesign login page
         $this->requireGuest();
         View::renderBlade('login/index');
     }
 
     /**
-     *  Authenticate User
+     * Authenticate User
+     *
+     * @return void
      */
     public function authenticateAction()
     {
@@ -39,6 +39,11 @@ class Login extends Controller
         $remember_me = isset($_POST['remember_me']);   // true or false
 
         if($user){
+
+            if(!$user->is_active){
+                Flash::addMessage('Please check your email to activate account', Flash::WARNING);
+                View::renderBlade('login/index',['uid'=>$_POST['uid'],'remember_me'=>$remember_me]);
+            }
 
             Auth::login($user,$remember_me);
 
@@ -49,7 +54,7 @@ class Login extends Controller
 
         }
         else{
-            Flash::addMessage('Login Un-Successful. Please try again', Flash::WARNING);
+            Flash::addMessage('Wrong Credentials. Incorrect email or password used', Flash::DANGER);
             View::renderBlade('login/index',['uid'=>$_POST['uid'],'remember_me'=>$remember_me]);
         }
     }

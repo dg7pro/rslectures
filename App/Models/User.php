@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Flash;
+use App\Initials;
 use App\Lib\Helpers;
 use App\Mail;
 use App\Token;
@@ -52,7 +53,8 @@ class User extends \Core\Model
      *
      * @return bool|false
      */
-    public function save(){
+    public function save(): bool
+    {
 
         $this->validate();
 
@@ -65,13 +67,15 @@ class User extends \Core\Model
             $hashed_token = $token->getHash();             // Saved in users table
             $this->activation_token = $token->getValue();  // To be send in email
 
+            $tnc = isset($this->i_agree)? 1 : 0;
+
             /*$referred_id =null;
             if($this->referred_by!=''){
                 $referred_id = self::getReferredByUserId($this->referred_by);
             }*/
 
-            $sql = 'INSERT INTO users (email, mobile, password_hash, first_name, last_name, activation_hash)
-                    VALUES (:email, :mobile, :password_hash, :first_name, :last_name, :activation_hash)';
+            $sql = 'INSERT INTO users (email, mobile, password_hash, first_name, last_name, activation_hash, tnc)
+                    VALUES (:email, :mobile, :password_hash, :first_name, :last_name, :activation_hash, :tnc)';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -82,17 +86,74 @@ class User extends \Core\Model
             $stmt->bindValue(':first_name', ucfirst($this->first_name), PDO::PARAM_STR);
             $stmt->bindValue(':last_name', ucfirst($this->last_name), PDO::PARAM_STR);
             $stmt->bindValue(':activation_hash', $hashed_token, PDO::PARAM_STR);
+            $stmt->bindValue(':tnc', $tnc, PDO::PARAM_BOOL);
 
 
             //return $stmt->execute();
 
             $stmt->execute();
-            return $db->lastInsertId();
+            $uid = $db->lastInsertId();
+
+            // Persist unique user code
+            $this->persistUserCode($uid);
+
+            return $uid;
 
         }
 
         return false;
     }
+
+    /**
+     * @param $new_id
+     * @return bool
+     */
+    public function persistUserCode($new_id): bool
+    {
+
+        $name = $this->first_name.' '.$this->last_name;
+
+        $initial = $this->generate($name);
+
+        $uc = $initial.date("y").date("m").$new_id;
+
+        $sql = "UPDATE users SET code=? WHERE id=?";
+        $pdo = Model::getDB();
+        $stmt=$pdo->prepare($sql);
+        return $stmt->execute([$uc,$new_id]);
+
+    }
+
+    /**
+     * Generate initials from a name
+     *
+     * @param string $name
+     * @return string
+     */
+    public function generate(string $name) : string
+    {
+        $words = explode(' ', $name);
+        if (count($words) >= 2) {
+            return strtoupper(substr($words[0], 0, 1) . substr(end($words), 0, 1));
+        }
+        return $this->makeInitialsFromSingleWord($name);
+    }
+
+    /**
+     * Make initials from a word with no spaces
+     *
+     * @param string $name
+     * @return string
+     */
+    protected function makeInitialsFromSingleWord(string $name) : string
+    {
+        preg_match_all('#([A-Z]+)#', $name, $capitals);
+        if (count($capitals[1]) >= 2) {
+            return substr(implode('', $capitals[1]), 0, 2);
+        }
+        return strtoupper(substr($name, 0, 2));
+    }
+
 
     /**
      * Validate User Input
@@ -127,8 +188,8 @@ class User extends \Core\Model
         }
 
         // password
-        if (strlen($this->password) < 8) {
-            $this->errors[] = 'Password must be at least 8 characters or more';
+        if (strlen($this->password) < 7) {
+            $this->errors[] = 'Password must be at least 7 characters or more';
         }
 
         if (!isset($this->i_agree)) {
@@ -187,7 +248,7 @@ class User extends \Core\Model
     public static function authenticate($email, $password){
 
         $user = static::findByEmail($email);
-        if($user&& $user->is_active){
+        if($user){
             if(password_verify($password,$user->password_hash)){
                 return $user;
             }
@@ -608,24 +669,26 @@ class User extends \Core\Model
      *
      * @param string $value Activation token from the URL
      *
-     * @return void
+     * @return bool
      */
     public static function activate($value)
     {
         $token = new Token($value);
         $hashed_token = $token->getHash();
 
-        $sql = 'UPDATE users
-                SET is_active = 1, ev = 1,
-                    activation_hash = null
-                WHERE activation_hash = :hashed_token';
+        $sql = 'UPDATE users SET is_active = 1, ev = 1, activation_hash = null WHERE activation_hash = ?';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
 
-        $stmt->bindValue(':hashed_token', $hashed_token, PDO::PARAM_STR);
-
-        $stmt->execute();
+        //$stmt->bindValue(':hashed_token', $hashed_token, PDO::PARAM_STR);
+        $stmt->execute([$hashed_token]);
+        /*var_dump($stmt->rowCount());
+        exit();*/
+        if($stmt->rowCount() > 0){
+            return true;
+        }
+        return false;
     }
 
 

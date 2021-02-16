@@ -30,8 +30,20 @@
 
     <div class="container-fluid">
 
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-info">
+                        <li class="breadcrumb-item"><a href="{{'/'}}">RS Lectures</a></li>
+                        <li class="breadcrumb-item"><a href="{{'/admin/index'}}">Admin Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Upload PDF Files</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
         <!-- First Row  -->
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-lg-12">
 
                 @include('layouts.partials.flash')
@@ -91,7 +103,7 @@
             $('#file_upload').uploadifive({
                 'auto'             : false,
                 'checkScript'      : '/admin/check-exists',
-                'fileType'         : 'image/png',
+                'fileType'         : 'image/pdf',
                 'formData'         : {
                                         'timestamp' : '{{ $timestamp }}',
                                         'token'     : '{{ md5('unique_salt' . $timestamp) }}'

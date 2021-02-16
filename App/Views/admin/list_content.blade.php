@@ -250,6 +250,10 @@
                 },function (data, status) {
                     console.log(data);
                     readRecords();
+                    var response = $.parseJSON(data);
+                    if(response.status === false){
+                        alert(response.message);
+                    }
                 });
             }
         }

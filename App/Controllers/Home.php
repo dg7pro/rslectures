@@ -8,6 +8,8 @@ use App\Flash;
 use App\Mail;
 use App\Models\Content;
 use App\Models\File;
+use App\Models\Order;
+use App\Models\UserGroup;
 use Core\Controller;
 use \Core\View;
 
@@ -67,8 +69,16 @@ class Home extends Controller
     public function sessionAction()
     {
 
-        var_dump($_SESSION);
-         exit();
+        /*var_dump($_SESSION);
+         exit();*/
+
+        /*$currentOrder = Order::findByOrderId('ORDS16157389841');
+
+        $arr = array();
+        $arr['course_id']=$currentOrder->course_id;
+        $arr['user_id']=$currentOrder->user_id;
+        $ug = new UserGroup($arr);
+        $ug->firstSubscription();*/
 
     }
 

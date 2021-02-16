@@ -36,7 +36,7 @@ class Ajax extends Controller
                 $n=0;
                 $ht = '<span class="text-danger">This is empty</span>';
             }
-            elseif (!preg_match("/^([a-zA-Z ]{3,8})$/",$fn)) {
+            elseif (!preg_match("/^([a-zA-Z ]{3,15})$/",$fn)) {
                 $n=0;
                 $ht = '<span class="text-danger">Enter valid firstname</span>';
             }
@@ -64,7 +64,7 @@ class Ajax extends Controller
                 $n=0;
                 $ht = '<span class="text-danger">This is empty</span>';
             }
-            elseif (!preg_match("/^([a-zA-Z ]{3,8})$/",$ln)) {
+            elseif (!preg_match("/^([a-zA-Z ]{3,15})$/",$ln)) {
                 $n=0;
                 $ht = '<span class="text-danger">Enter valid lastname</span>';
             }

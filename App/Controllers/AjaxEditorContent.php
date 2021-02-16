@@ -152,11 +152,16 @@ class AjaxEditorContent extends Administered
 
         if(isset($_POST['id'])){
 
-            $re = Content::deleteRecord($_POST['id']);
+            // Real code for deleting Content Records
+            /*$re = Content::deleteRecord($_POST['id']);
             if(!$re){
                 echo 'Something went Wrong';
             }
-            echo 'Deleted Subject Permanently';
+            echo 'Deleted Subject Permanently';*/
+
+            $response['status'] = false;
+            $response['message'] = 'Application says Don\'t delete anything, just change or modify it to continue...';
+            echo json_encode($response);
 
         }
 

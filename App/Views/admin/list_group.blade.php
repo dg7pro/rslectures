@@ -76,9 +76,21 @@
                                 <label for="new-group-color">Select Color:</label>
                                 <select class="form-control" id="new-group-color">
                                     <option value="">Select</option>
-                                    <option value="coral">Coral</option>
-                                    <option value="lightsteelblue">LightSteelBlue</option>
                                     <option value="orange">Orange</option>
+                                    <option value="lightcoral">LightCoral</option>
+                                    <option value="lightsalmon">LightSalmon</option>
+                                    <option value="" disabled>***</option>
+                                    <option value="lightseagreen">LightSeaGreen</option>
+                                    <option value="lightsteelblue">LightSteelBlue</option>
+                                    <option value="Thistle">Thistle</option>
+                                    <option value="" disabled>***</option>
+                                    <option value="SandyBrown">SandyBrown</option>
+                                    <option value="Wheat">Wheat</option>
+                                    <option value="PaleGoldenRod">PaleGoldenRod</option>
+                                    <option value="" disabled>***</option>
+                                    <option value="Khaki">Khaki</option>
+                                    <option value="LavenderBlush">LavenderBlush</option>
+                                    <option value="LightGoldenRodYellow">LightGoldenRodYellow</option>
                                 </select>
                             </div>
 
@@ -131,9 +143,28 @@
                                 <label for="group-color">Select Color:</label>
                                 <select class="form-control" id="group-color">
                                     <option value="">Select</option>
-                                    <option value="coral">Coral</option>
-                                    <option value="lightsteelblue">LightSteelBlue</option>
                                     <option value="orange">Orange</option>
+                                    <option value="lightcoral">LightCoral</option>
+                                    <option value="lightsalmon">LightSalmon</option>
+                                    <option value="" disabled>***</option>
+                                    <option value="lightseagreen">LightSeaGreen</option>
+                                    <option value="lightsteelblue">LightSteelBlue</option>
+                                    <option value="Thistle">Thistle</option>
+                                    <option value="" disabled>***</option>
+                                    <option value="SandyBrown">SandyBrown</option>
+                                    <option value="Wheat">Wheat</option>
+                                    <option value="PaleGoldenRod">PaleGoldenRod</option>
+                                    <option value="" disabled>***</option>
+                                    <option value="Khaki">Khaki</option>
+                                    <option value="LavenderBlush">LavenderBlush</option>
+                                    <option value="LightGoldenRodYellow">LightGoldenRodYellow</option>
+
+
+
+                                    {{--<option value="lightpink">LightPink</option>--}}
+                                    {{--<option value="lightskyblue">LightSkyBlue</option>--}}
+                                    {{--<option value="Yellow">Yellow</option>--}}
+
                                 </select>
                             </div>
 
@@ -278,6 +309,12 @@
                 },function (data, status) {
                     console.log(data);
                     readRecords();
+                    var response = $.parseJSON(data);
+                    if(response.status === false){
+                        alert(response.message);
+                    }
+
+
                 });
             }
 

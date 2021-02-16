@@ -6,10 +6,9 @@ namespace App\Controllers;
 
 use App\Auth;
 use App\Models\Group;
-use Core\Controller;
 use Core\View;
 
-class Subscribe extends Controller
+class Subscribe extends Authenticated
 {
 
     public function indexAction(){
@@ -22,6 +21,9 @@ class Subscribe extends Controller
         //exit();
 
         $groups = Group::fetchAllActive();
+
+        /*var_dump($groups);
+        exit();*/
 
         View::renderBlade('/subscribe/index',['groups'=>$groups,'subscribed'=>$course_list]);
     }

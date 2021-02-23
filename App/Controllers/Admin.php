@@ -28,6 +28,8 @@ class Admin extends Administered
         View::renderBlade('admin.index');
     }
 
+    /*---------------Start Group Section------------------*/
+
     /**
      *  List Groups
      */
@@ -36,6 +38,21 @@ class Admin extends Administered
         //$groups = Group::fetchAll();
         View::renderBlade('admin.list_group');
     }
+
+    /**
+     *  Change Group Order
+     */
+    public function changeGroupOrderAction(){
+
+        //$sid = $_GET['sid'];
+        $groups = Group::fetchAll();
+
+        View::renderBlade('admin.change_group_order',['groups'=>$groups]);
+
+    }
+
+    /*---------------End Group-------------------*/
+
 
     /**
      *  List Subjects

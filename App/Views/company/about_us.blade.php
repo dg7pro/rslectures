@@ -7,13 +7,13 @@
         <h1 class="mt-5 mb-4">About Us</h1>
 
         <p class="mb-2">
-            R. S. Publications (which owns rslectures.com) - is the society registered under Societies Act 1860 – is a
+            R S Publishing House (which owns rslectures.com) - is the society registered under Societies Act 1860 – is a
             reputed book publishing house located in Northern India, with record publication of more than 100 books,
             magazines, journals and research papers in last 2 years.
         </p>
 
         <p class="mb-2">
-            Education is the process of the acquisition of knowledge and skills. R S Publications, not only involves in
+            Education is the process of the acquisition of knowledge and skills. R S Publishing House, not only involves in
             planning, editing, acquisition, but we also works on copy editing, copyrighting, designing, art directing,
             production managing, distributing, selling and promoting etc.
         </p>
@@ -21,7 +21,7 @@
         <p class="mb-2">
             The publication is truly a difficult task, but not with us. It involves risk of not selling, published books.
             Having finished your book and having it published are incredible moments, but between them, there may be some
-            halts disappointments. R S Publication plays an important role here by correct advising till publication of
+            halts disappointments. R S Publishing House plays an important role here by correct advising till publication of
             actual no. of units, to marketing & advertisement. So if you want to publish your books please drop us a
             message given at contacts given in footer section of the website.
         </p>

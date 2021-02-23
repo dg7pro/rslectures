@@ -7,17 +7,17 @@
         <h1 class="mt-5 mb-4">Privacy Policy </h1>
 
         <p class="mb-2">The terms "We" / "Us" / "Our"/”Company” individually and collectively refer
-            to <u>R S Publications</u> and the terms "You" /"Your" / "Yourself" refer to the users.</p>
+            to <u>R S Publishing House</u> and the terms "You" /"Your" / "Yourself" refer to the users.</p>
         <p class="mb-2">This Privacy Policy is an electronic record in the form of an electronic contract
             formed under the information Technology Act, 2000 and the rules made there under and
             the amended provisions pertaining to electronic documents / records in various statutes
             as amended by the information Technology Act, 2000. This Privacy Policy does not
             require any physical, electronic or digital signature.</p>
-        <p class="mb-2">This Privacy Policy is a legally binding document between you and <u>R S Publications</u>
+        <p class="mb-2">This Privacy Policy is a legally binding document between you and <u>R S Publishing House</u>
             (both terms defined below). The terms of this Privacy Policy will be effective upon
             your acceptance of the same (directly or indirectly in electronic form, by clicking
             on the I accept tab or by use of the website or by other means) and will govern the
-            relationship between you and <u>R S Publications</u> for your use of the website <u>“www.rslectures.com”</u> (defined below).</p>
+            relationship between you and <u>R S Publishing House</u> for your use of the website <u>“www.rslectures.com”</u> (defined below).</p>
         <p class="mb-2">This document is published and shall be construed in accordance with the provisions
             of the Information Technology (reasonable security practices and procedures and
             sensitive personal data of information) rules, 2011 under Information Technology Act,
@@ -112,9 +112,9 @@
             signature to:</p>
         <p class="mb-2">Sri Gopal Srivastava (Grievance Officer)<br>
             www.rslectures.com<br>
-            R S Publications<br>
-            Email:rsbubhouse@gmail.com<br>
-            Ph: 9335333717
+            R S Publishing House<br>
+            Email: rspubhouse@gmail.com<br>
+            Ph: +91 9453177545
         </p>
 
 

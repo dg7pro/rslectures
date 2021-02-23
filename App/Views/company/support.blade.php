@@ -11,11 +11,17 @@
         </p>
 
         <p class="mb-2">
-            <b>Email: <span class="text-primary">rspubhouse@gmail.com</span></b>
+            <b>Email:
+                <span class="text-primary">rspubhouse@gmail.com</span>
+            </b>
         </p>
 
         <p class="mb-2">
-            <b>Mobile/Whatsapp: <span class="text-primary">91+ 9335333717</span></b>
+            <b>Whatsapp: <span class="text-primary">91+ 9453177545</span></b>
+        </p>
+
+        <p class="mb-2">
+            <b>R S Helpline Number: <span class="text-primary">91+ 9453177545</span></b>
         </p>
 
     </div>

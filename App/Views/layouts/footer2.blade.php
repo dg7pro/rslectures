@@ -9,7 +9,7 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="kilimanjaro_part">
                         <h5>About Us</h5>
-                        <p>R S Publications is a leading publishing house of Northern India with record publication of
+                        <p>R S Publishing House is a leading book publisher of Northern India with record publication of
                             more than 100 books, magazines, journals and research papers in last two years.
                         </p>
                         <p>In year 2020, we decided to go online and provide short notes and study materials of various
@@ -91,7 +91,7 @@
                         <h5>Quick Contact</h5>
                         <div class="kilimanjaro_single_contact_info">
                             <h5>Phone:</h5>
-                            <p>+91 75650 97233<br> +91 88876 10230</p>
+                            <p>+91 9453177545<br> +91 9453177545</p>
                         </div>
                         <div class="kilimanjaro_single_contact_info">
                             <h5>Email:</h5>
@@ -119,7 +119,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p>© All Rights Reserved by <a href="#">R. S. Publications -(happy learning)<i class="fa fa-love"></i></a></p>
+                    <p>© All Rights Reserved by - R. S. Publishing House <br>
+                        <i class="fas fa-heart"></i> Happy learning </p>
                 </div>
             </div>
         </div>

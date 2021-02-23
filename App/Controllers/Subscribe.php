@@ -20,7 +20,7 @@ class Subscribe extends Authenticated
         //var_dump($course_list);
         //exit();
 
-        $groups = Group::fetchAllActive();
+        $groups = Group::fetchAll();
 
         /*var_dump($groups);
         exit();*/

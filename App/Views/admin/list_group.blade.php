@@ -33,6 +33,7 @@
                         <h2>
                             Courses/Groups
                             <button onclick="showNewGroupForm()" type="button" class="mb-1 ml-3 btn btn-sm btn-primary">Add Group +</button>
+                            <a href="{{'/admin/change-group-order'}}" class="mb-1 ml-3 btn btn-sm btn-dark">Change Order</a>
                         </h2>
                     </div>
                     <div class="card-body">
@@ -68,9 +69,19 @@
                                 <label for="new-group-descr" class="col-form-label">Description:</label>
                                 <textarea class="form-control" id="new-group-descr"></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="new-group-price" class="col-form-label">Price:</label>
-                                <input type="text" class="form-control" id="new-group-price">
+                            <div class="form-group form-row">
+                                <div class="col">
+                                    <label for="new-group-price" class="col-form-label">Price:</label>
+                                    <input type="text" class="form-control" id="new-group-price">
+                                </div>
+                                <div class="col">
+                                    <label for="new-group-duration" class="col-form-label">Duration:</label>
+                                    <select class="form-control" id="new-group-duration">
+                                        <option value="">Select</option>
+                                        <option value="sem">Sem</option>
+                                        <option value="year">Year</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="new-group-color">Select Color:</label>
@@ -94,13 +105,24 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <label for="new-group-open">Registration Open:</label>
-                                <select class="form-control" id="new-group-open">
-                                    <option value="">Select</option>
-                                    <option value=0 selected>Closed (By Default)</option>
-                                    <option value=1>Open</option>
-                                </select>
+                            <div class="form-group form-row">
+                                <div class="col">
+                                    <label for="new-group-open">Registration Open:</label>
+                                    <select class="form-control" id="new-group-open">
+                                        <option value="">Select</option>
+                                        <option value=0 selected>Closed (By Default)</option>
+                                        <option value=1>Open</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="new-group-deactive">Deactive:</label>
+                                    <select class="form-control" id="new-group-deactive">
+                                        <option value="">Select</option>
+                                        <option value=0 selected>No</option>
+                                        <option value=1>Yes</option>
+                                    </select>
+                                </div>
+
                             </div>
                         </form>
                     </div>
@@ -133,9 +155,19 @@
                                 <label for="group-descr" class="col-form-label">Description:</label>
                                 <textarea class="form-control" id="group-descr"></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="group-price" class="col-form-label">Price:</label>
-                                <input type="text" class="form-control" id="group-price">
+                            <div class="form-group form-row">
+                                <div class="col">
+                                    <label for="group-price" class="col-form-label">Price:</label>
+                                    <input type="text" class="form-control" id="group-price">
+                                </div>
+                                <div class="col">
+                                    <label for="group-duration" class="col-form-label">Duration:</label>
+                                    <select class="form-control" id="group-duration">
+                                        <option value="">Select</option>
+                                        <option value="sem">Sem</option>
+                                        <option value="year">Year</option>
+                                    </select>
+                                </div>
                             </div>
 
 
@@ -168,13 +200,24 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <label for="group-open">Registration Open:</label>
-                                <select class="form-control" id="group-open">
-                                    <option value="">Select</option>
-                                    <option value=0 selected>Closed (By Default)</option>
-                                    <option value=1>Open</option>
-                                </select>
+                            <div class="form-group form-row">
+                                <div class="col">
+                                    <label for="group-open">Registration Open:</label>
+                                    <select class="form-control" id="group-open">
+                                        <option value="">Select</option>
+                                        <option value=0 selected>Closed (By Default)</option>
+                                        <option value=1>Open</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="group-deactive">Deactive:</label>
+                                    <select class="form-control" id="group-deactive">
+                                        <option value="">Select</option>
+                                        <option value=0>No (By Default)</option>
+                                        <option value=1>Yes</option>
+                                    </select>
+                                </div>
+
                             </div>
                         </form>
                     </div>
@@ -238,8 +281,10 @@
                 $('#group-name').val(group.name);
                 $('#group-descr').val(group.descr);
                 $('#group-price').val(group.price);
+                $('#group-duration').val(group.duration);
                 $('#group-color').val(group.color);
                 $('#group-open').val(group.open);
+                $('#group-deactive').val(group.deactive);
                 $('#group-id').val(group.id);
 
             });
@@ -251,15 +296,19 @@
             var name = $('#group-name').val();
             var descr = $('#group-descr').val();
             var price = $('#group-price').val();
+            var duration = $('#group-duration').val();
             var color = $('#group-color').val();
             var open = $('#group-open').val();
+            var deactive = $('#group-deactive').val();
             var id = $('#group-id').val();
             $.post("/adjax/updateSingleGroupRecord",{
                 name:name,
                 descr:descr,
                 price:price,
+                duration:duration,
                 color:color,
                 open:open,
+                deactive:deactive,
                 id:id
 
             },function (data, status) {
@@ -278,15 +327,19 @@
             var name = $('#new-group-name').val();
             var descr = $('#new-group-descr').val();
             var price = $('#new-group-price').val();
+            var duration = $('#new-group-duration').val();
             var color = $('#new-group-color').val();
             var open = $('#new-group-open').val();
+            var deactive = $('#new-group-deactive').val();
 
             $.post("/adjax/insertNewGroupRecord",{
                 name:name,
                 descr:descr,
                 price:price,
+                duration:duration,
                 color:color,
-                open:open
+                open:open,
+                deactive:deactive
 
             },function (data, status) {
                 console.log(data);

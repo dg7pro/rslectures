@@ -32,14 +32,14 @@
               on their demands.
            </p>
            <p>
-              Education is the process of the acquisition of knowledge and skills. R S Publications, not only involves
+              Education is the process of the acquisition of knowledge and skills. R S Publishing, not only involves
               in planning, editing, acquisition, but we also works on copy editing, copyrighting, designing, art
               directing, production managing, distributing, selling and promoting etc.
            </p>
            <p>
               The publication is truly difficult but not with us. It involves risk of not selling, published books.
               Having finished your book and having it published are incredible moments, but between them, there may be
-              some halts disappointments. R S Publication plays an important role here by correct advising till
+              some halts disappointments. R S Publishing plays an important role here by correct advising till
               publication of actual no. of units, to marketing & advertisement. So if you want to publish your books
               please drop us a message given at contacts given in footer section of the website.
            </p>

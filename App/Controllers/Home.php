@@ -5,10 +5,13 @@ namespace App\Controllers;
 
 use App\Auth;
 use App\Flash;
+use App\Lib\Helpers;
 use App\Mail;
 use App\Models\Content;
 use App\Models\File;
+use App\Models\Group;
 use App\Models\Order;
+use App\Models\Subject;
 use App\Models\UserGroup;
 use Core\Controller;
 use \Core\View;
@@ -80,6 +83,12 @@ class Home extends Controller
         $ug = new UserGroup($arr);
         $ug->firstSubscription();*/
 
+    }
+
+    public function groupAction(){
+        $results = Subject::fetchAllWithLesson(1);
+        //$results = Group::fetchGroupWithSubDetails(1);
+        Helpers::dnd($results);
     }
 
     public function testAction(){

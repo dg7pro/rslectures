@@ -4,7 +4,7 @@
 
     <div class="container mb-5">
 
-        <h1 class="mt-5 mb-4">Career at RS Publications</h1>
+        <h1 class="mt-5 mb-4">Career at R S Publishing House</h1>
 
         <p class="mb-2">
             R S Publication is one of the leading Books and Educational content providers of India with professionals
@@ -12,7 +12,7 @@
         </p>
 
         <p class="mb-2">
-            Multifarious opportunities are available at R S Publications for various professionals on full time/part
+            Multifarious opportunities are available at R S Publishing House for various professionals on full time/part
             time basis.
         </p>
 
@@ -70,9 +70,6 @@
             6.	Article Writers:
             <br>Writing articles on current topics for various journals and websites
         </p>
-
-
-
 
 
     </div>

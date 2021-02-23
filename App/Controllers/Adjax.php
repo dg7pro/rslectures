@@ -32,6 +32,7 @@ class Adjax extends Administered
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Price(INR)</th>
+                    <th scope="col">Deactive</th>
                      <th scope="col">Update</th>
                     <th scope="col">Delete</th>
                      <th scope="col">Manage</th>
@@ -46,8 +47,9 @@ class Adjax extends Administered
                 foreach($results as $row) {
                     $data .= '<tr>
                     <td>'.$row['id'].'</td>
-                    <td>'.$row['name'].'<span class="small text-danger mark"><em>'.( $row['open']!=1?' Currently Closed ':'' ).'</em></span></td>
-                    <td>Rs. '.$row['price'].'</td>
+                    <td>'.$row['name'].'<span class="small text-danger mark"><em>'.( $row['open']!=1?' Coming Soon ':'' ).'</em></span></td>
+                    <td>Rs. '.$row['price'].' / '.$row['duration'].'</td>
+                    <td><span class="small text-danger"><em>'.($row['deactive']==1?'Yes':'').'</em></span></td>
                     <td><button onclick="getGroupInfo('.$row['id'].')" type="button" class="mb-1 btn btn-sm btn-info">Edit</button></td>                 
                     <td><button onclick="deleteGroupInfo('.$row['id'].')" type="button" class="mb-1 btn btn-sm btn-danger">Del</button></td>
                     <td><a href="/admin/list-subject?gid='.$row['id'].'" class="mb-1 btn btn-sm btn-warning">Subjects</a></td>
@@ -60,6 +62,121 @@ class Adjax extends Administered
             echo $data;
 
         }
+    }
+
+    public function fetchCourseDetails(){
+
+        if(isset($_POST['groupId']) && isset($_POST['groupId'])!=''){
+
+            $group_id = $_POST['groupId'];
+
+            $results = Subject::fetchAllWithLesson($group_id);
+            $num = count($results);
+
+            /*if($num>0){
+                $response = $groupInfo;
+            }else{
+                $response['status']=200;
+                $response['message']="No data found!";
+            }
+            echo json_encode($response);*/
+
+
+            $data = '<div>';
+
+            if($num>0){
+                foreach($results as $row) {
+                    $data .= '<h5 class="text-primary">Sub'.$row['no'].': '.$row['sub'].'</h5>';
+                    if(count($row['lessons'])>0){
+                        $data .= '<ul>';
+                            foreach($row['lessons'] as $ls) {
+                                $data .= ' <li><i class="fas fa-angle-right"></i> '. $ls['title'] .'</li>';
+                            }
+                        $data .= '</ul><br>';
+
+                    }
+                }
+
+                $data .='<h5 class="text-primary">++ Plus</h5>
+                        <ul class="text-success mark">
+                        <li><i class="fas fa-angle-right"></i> <b>Specimens</b></li>
+                        <li><i class="fas fa-angle-right"></i> <b>Model Test Papers</b></li>
+                        <li><i class="fas fa-angle-right"></i> <b>Important tips and hints</b></li>
+                        </ul>';
+            }else{
+                $data .='<h5 class="text-primary text-center">Coming Soon</h5>
+                        <ul class="text-success mark text-center">
+                        <li><i class="fas fa-angle-right"></i> <b>From next session</b></li>
+                        <li><i class="fas fa-angle-right"></i> <b>June 2021</b></li>                       
+                        </ul>';
+
+            }
+
+            $data .='</div>';
+            echo $data;
+
+        }
+    }
+
+    public function listGroupsForChangingOrderAction(){
+
+        if(isset($_POST['readrecord'])){
+            $data = '<table class="table table-bordered">
+                <tbody>';
+
+            $arr = Group::fetchAll();
+            $sno = count($arr);
+            $sno_arr=array();
+            for ($i=1;$i<=$sno;$i++){
+                array_push($sno_arr,$i);
+            }
+
+            if(count($arr)>0){
+                foreach ($arr as $grp){
+                    $data .= '<tr>
+                    <td>'.$grp['sno'].'</td>                           
+                    <td>
+                        <a href="/lesson/display?pdf='.$grp['name'].'" target="_blank">'.$grp['name'].'</a>
+                       
+                    </td>
+                    <td>'.$grp['sno'].'</td>
+                    <td>
+                        <select class="form-control" id="exampleFormControlSelect1" name="sno'.$grp['id'].'" onchange="setSno('.$grp['id'].',this.value)">
+                            <option>Change Order</option>
+                            ';
+                    for($i=1;$i<=$sno;$i++){
+                        $data .='<option value="'.$i.'">'.$i.'</option>';
+                    }
+                    $data .='
+                        </select>
+                    </td>
+                    </tr>';
+                }
+
+            }
+
+            $data .='</tbody></table>';
+            echo $data;
+
+        }
+
+    }
+
+    /**
+     * Change Order of File Contents
+     */
+    public function changeGroupOrderAction(){
+
+        if(isset($_POST['id']) && isset($_POST['sno'])){
+
+            $re = Group::updateOrder($_POST['sno'],$_POST['id']);
+            if(!$re){
+                echo 'Something went Wrong';
+            }
+            echo 'Order Updated Successfully';
+
+        }
+
     }
 
     /**

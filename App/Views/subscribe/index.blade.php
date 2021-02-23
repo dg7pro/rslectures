@@ -10,7 +10,11 @@
 
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
             <h1 class="display-4 text-info">Courses Available</h1>
-            <p class="">Please subscribe to the courses you want to study. It's built with utmost care so that students can obtain maximum marks out off it.</p>
+            <p class="">Please subscribe to the courses you are studying in. Our study material is built with utmost care so that students
+                can obtain maximum marks out off it. It covers every topic of all the subjects.
+                Click on the info icon <span class="text-primary"><i class="fas fa-info-circle"></i></span>
+                to know more.
+                </p>
         </div>
 
 
@@ -20,7 +24,11 @@
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm" style="background-color: {{$group['color']}}">
                             <div class="card-header">
-                                <h4 class="my-0 font-weight-normal">{{$group['name']}}</h4>
+                                <h4 class="my-0 font-weight-normal text-dark">
+                                    <a href="#" onclick="return showDetails({{$group['id']}})" style="text-decoration: none; color: #343a40!important;"> {{$group['name']}} </a>
+                                    <a title="know more" href="#" onclick="return showDetails({{$group['id']}})" style="text-decoration: none; color: #343a40!important;" ><i class="fas fa-info-circle"></i>  </a>
+                                   {{-- <i class="fas fa-external-link-square-alt"></i>--}}
+                                </h4>
                             </div>
                             <div class="card-body">
                                 <form action="{{'/payment/redirect-payment'}}" method="POST">
@@ -53,7 +61,7 @@
 
                                     <h1 class="card-title pricing-card-title">
                                         <small class="text-muted"><i class="fas fa-rupee-sign"></i></small> {{$group['price']}}
-                                        <small class="text-muted">/ year</small>
+                                        <small class="text-muted">/ {{$group['duration']}}</small>
                                     </h1>
                                     <ul class="list-unstyled mt-3 mb-4">
                                         <li>All subjects included</li>
@@ -69,7 +77,11 @@
                                         @if(!$group['open'])
                                             <button onclick="showComingSoon()" type="button" class="btn btn-lg btn-block btn-dark">Coming Soon</button>
                                         @else
-                                            <button type="submit" class="btn btn-lg btn-block btn-dark">Purchase</button>
+                                            @if($group['deactive'])
+                                                <button class="btn btn-lg btn-block btn-dark disabled" disabled>Purchase</button>
+                                            @else
+                                                <button type="submit" class="btn btn-lg btn-block btn-dark">Purchase</button>
+                                            @endif
                                         @endif
 
                                     @endif
@@ -94,6 +106,31 @@
                     <div class="modal-body">
                         <div>
                             <img src="{{'/images/coming_soon.jpg'}}" alt="Coming Soon" width="100%">
+                            <h4 class="text-center text-warning">Coming from next session</h4>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- List Modal -->
+        <div class="modal fade" id="modal-course-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Various subjects and topics covered</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="records_content">
+
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -159,6 +196,20 @@
         function showComingSoon(){
             console.log('Hello');
             $('#modal-group').modal("show");
+            return false;
+        }
+
+        function showDetails(id){
+            console.log(id);
+            $('#group_id').val(id);
+            $.post("/adjax/fetchCourseDetails",{groupId:id},function (data, status) {
+
+                console.log(data);
+                $('#records_content').html(data);
+
+            });
+            $('#modal-course-info').modal("show");
+            return false;
         }
 
     </script>

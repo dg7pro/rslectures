@@ -23,7 +23,7 @@
             <li class="mb-2"><i class="fas fa-angle-right"></i>
                 Cancellation of order and Refund request should be made within 7 business days from the date of purchase</li>
             <li class="mb-2"><i class="fas fa-angle-right"></i>
-                Refund shall be made through NEFT directly into the bank account of the user</li>
+                Refund shall be made through NEFT/RTGS directly into the bank account of the user</li>
             <li class="mb-2"><i class="fas fa-angle-right"></i>
                 Request for the refund should be made in writing mentioning Student name, Unique Student Id, Course Name &
                 Purchase order details along with reason for Cancellation of order </li>

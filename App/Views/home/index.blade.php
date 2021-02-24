@@ -41,7 +41,7 @@
               Having finished your book and having it published are incredible moments, but between them, there may be
               some halts disappointments. R S Publishing plays an important role here by correct advising till
               publication of actual no. of units, to marketing & advertisement. So if you want to publish your books
-              please drop us a message given at contacts given in footer section of the website.
+              please drop us a message at address/email given in footer section of the website.
            </p>
 
 

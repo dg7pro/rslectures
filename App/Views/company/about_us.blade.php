@@ -23,7 +23,7 @@
             Having finished your book and having it published are incredible moments, but between them, there may be some
             halts disappointments. R S Publishing House plays an important role here by correct advising till publication of
             actual no. of units, to marketing & advertisement. So if you want to publish your books please drop us a
-            message given at contacts given in footer section of the website.
+            message at contacts given in footer section of the website.
         </p>
 
 
@@ -35,11 +35,12 @@
             videos, and e-lectures, on their demands, and the result was launching of rslectures.com
         </p>
         <p class="mb-2">
-            This website is dedicated to online courses and lectures. Online mode of education is cheaper from student’s
-            point of views. It is faster also. The various courses available on this website is designed and drafted in
-            such a way that students get maximum marks in lesser effort. In year 2020, during the Corona Lockdown periods,
-            we decided to go online and provide short notes and study materials of various universities to our students
-            through various e-learning modes such as docs, pdfs, videos, and e-lectures, on their demands.</p>
+            This website is dedicated to online e-lectures and study materials of various regular university courses.
+            Online mode of education is cheaper from student’s point of views. It is faster too. The various study and
+            preparation materials available on this website is designed and drafted in such a way that students get
+            maximum marks with lesser effort in their regular courses. We provide short notes and study materials of
+            various universities Regular Courses like BCA, MCA, B.Com, M.Com, BBA, MBA etc to our students
+            through various e-learning modes such as docs, pdfs, videos, and e-lectures etc, on their demands.</p>
 
     </div>
 

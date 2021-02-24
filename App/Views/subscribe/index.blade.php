@@ -31,45 +31,24 @@
                                 </h4>
                             </div>
                             <div class="card-body">
-                                <form action="{{'/payment/redirect-payment'}}" method="POST">
 
-                                    <input type="text" id="ORDER_ID" maxlength="20" size="20"
-                                           name="ORDER_ID" autocomplete="off"
-                                           value="{{"ORDS" . mt_rand() . $authUser->id}}" hidden>
-                                    <input type="text" id="CUST_ID" maxlength="20" size="20"
-                                           name="CUST_ID" autocomplete="off"
-                                           value="{{$authUser->code}}" hidden>
-                                    <input type="text" id="INDUSTRY_TYPE_ID" maxlength="20" size="20"
-                                           name="INDUSTRY_TYPE_ID" autocomplete="off"
-                                           value="Retail" hidden>
-                                    <input type="text" id="CHANNEL_ID" maxlength="20" size="20"
-                                           name="CHANNEL_ID" autocomplete="off"
-                                           value="WEB" hidden>
-                                    <!-- Course/Group related -->
-                                    <input type="text" id="COURSE_ID"
-                                           name="COURSE_ID" autocomplete="off"
-                                           value="{{$group['id']}}" hidden >
-                                    <input type="text" id="COURSE"
-                                           name="COURSE" autocomplete="off"
-                                           value="{{$group['name']}}" hidden >
-                                    <input type="text" id="TXN_AMOUNT"
-                                           name="TXN_AMOUNT" autocomplete="off"
-                                           value="{{$group['price']}}" hidden >
+                                <h1 class="card-title pricing-card-title">
+                                    <small class="text-muted"><i class="fas fa-rupee-sign"></i></small> {{$group['price']}}
+                                    <small class="text-muted">/ {{$group['duration']}}</small>
+                                </h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>All subjects included</li>
+                                    <li>Study as you want</li>
+                                    <li>Model Question Papers</li>
+                                    <li>24x7 Support</li>
+                                </ul>
+                                {{--Open Auth check--}}
+                                @if(!$authUser)
 
+                                    <a href="{{'/login/index'}}" role="button" class="btn btn-lg btn-block btn-dark">Purchase</a>
 
+                                @else
 
-
-                                    <h1 class="card-title pricing-card-title">
-                                        <small class="text-muted"><i class="fas fa-rupee-sign"></i></small> {{$group['price']}}
-                                        <small class="text-muted">/ {{$group['duration']}}</small>
-                                    </h1>
-                                    <ul class="list-unstyled mt-3 mb-4">
-                                        <li>All subjects included</li>
-                                        <li>Study as you want</li>
-                                        <li>Model Question Papers</li>
-                                        <li>24x7 Support</li>
-                                    </ul>
-                                    {{--<button type="submit" class="btn btn-lg btn-block btn-dark">Subscribe</button>--}}
                                     @if(in_array($group['id'],$subscribed))
                                         {{--<button type="submit" class="btn btn-lg btn-block btn-dark disabled">Subscribe</button>--}}
                                         <a class="btn btn-lg btn-block btn-dark" href="{{'/page/list-subject-new?gid='.$group['id']}}" role="button">Learn Now</a>
@@ -80,12 +59,38 @@
                                             @if($group['deactive'])
                                                 <button class="btn btn-lg btn-block btn-dark disabled" disabled>Purchase</button>
                                             @else
-                                                <button type="submit" class="btn btn-lg btn-block btn-dark">Purchase</button>
+                                                <form action="{{'/payment/redirect-payment'}}" method="POST">
+
+                                                    <input type="text" id="ORDER_ID" maxlength="20" size="20"
+                                                           name="ORDER_ID" autocomplete="off"
+                                                           value="{{"ORDS" . mt_rand() . $authUser->id}}" hidden>
+                                                    <input type="text" id="CUST_ID" maxlength="20" size="20"
+                                                           name="CUST_ID" autocomplete="off"
+                                                           value="{{$authUser->code}}" hidden>
+                                                    <input type="text" id="INDUSTRY_TYPE_ID" maxlength="20" size="20"
+                                                           name="INDUSTRY_TYPE_ID" autocomplete="off"
+                                                           value="Retail" hidden>
+                                                    <input type="text" id="CHANNEL_ID" maxlength="20" size="20"
+                                                           name="CHANNEL_ID" autocomplete="off"
+                                                           value="WEB" hidden>
+                                                    <!-- Course/Group related -->
+                                                    <input type="text" id="COURSE_ID"
+                                                           name="COURSE_ID" autocomplete="off"
+                                                           value="{{$group['id']}}" hidden >
+                                                    <input type="text" id="COURSE"
+                                                           name="COURSE" autocomplete="off"
+                                                           value="{{$group['name']}}" hidden >
+                                                    <input type="text" id="TXN_AMOUNT"
+                                                           name="TXN_AMOUNT" autocomplete="off"
+                                                           value="{{$group['price']}}" hidden >
+                                                    <button type="submit" class="btn btn-lg btn-block btn-dark">Purchase</button>
+                                                </form>
                                             @endif
                                         @endif
-
                                     @endif
-                                </form>
+
+                                @endif
+                                {{--End Auth check--}}
                             </div>
                         </div>
                     </div>

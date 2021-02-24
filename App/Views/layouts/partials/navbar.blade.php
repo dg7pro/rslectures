@@ -11,14 +11,17 @@
         <ul class="navbar-nav mr-auto">
             @if($authUser)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{'/account/welcome'}}">Dashboard <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{'/account/welcome'}}"><mark> Dashboard</mark></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'/subscribe/index'}}"><mark> Courses</mark></a>
                 </li>
                 {{--<li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>--}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        My Courses
+                        My Area
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @foreach($courses as $course)
@@ -27,14 +30,22 @@
                         @if(!empty($courses))
                             <div class="dropdown-divider"></div>
                         @endif
-                        <a class="dropdown-item" href="{{'/Account/welcome'}}">My Subscription</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{'/Subscribe/index'}}">Other Courses</a>
+                        <a class="dropdown-item" href="{{'/account/welcome'}}">Subscription</a>
+                       {{-- <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{'/Subscribe/index'}}">Other Courses</a>--}}
                     </div>
                 </li>
                 {{--<li class="nav-item">
                     <a class="nav-link disabled" href="#">Disabled</a>
                 </li>--}}
+
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'/account/welcome'}}"><mark>Dashboard</mark> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'/subscribe/index'}}"><mark> Courses</mark></a>
+                </li>
             @endif
         </ul>
 

@@ -34,7 +34,7 @@
                                         <div class="d-inline-block mr-3">
                                             <label class="control control-checkbox checkbox-primary">
                                                 <span class="text-muted font-size-16">Remember Me</span>
-                                                <input type="checkbox" id="remember-me" name="remember_me"/>
+                                                <input type="checkbox" id="remember-me" name="remember_me" checked/>
                                                 <div class="control-indicator"></div>
                                             </label>
                                         </div>

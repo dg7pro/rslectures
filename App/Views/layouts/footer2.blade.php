@@ -12,8 +12,8 @@
                         <p>R S Publishing House is a leading book publisher of Northern India with record publication of
                             more than 100 books, magazines, journals and research papers in last two years.
                         </p>
-                        <p>In year 2020, we decided to go online and provide short notes and study materials of various
-                            universities to our students through various e-learning modes
+                        <p>In year 2020, we decided to go online and provide notes and study materials of various, universities
+                            courses, to our students through various e-learning modes
                         </p>
                     </div>
                     <div class="kilimanjaro_part m-top-15">

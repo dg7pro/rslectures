@@ -22,14 +22,21 @@ class Company extends Controller
     }
 
     /**
-     * Contact us
+     * Contact Us
+     */
+    public function contactUsAction(){
+        View::renderBlade('company.contact_us');
+    }
+
+    /**
+     * Career
      */
     public function careerAction(){
         View::renderBlade('company.career');
     }
 
     /**
-     * Disclaimer
+     * Support
      */
     public function supportAction(){
         View::renderBlade('company.support');

@@ -47,7 +47,7 @@
                         <ul class="kilimanjaro_links">
                             <li><a href="{{'/company/tnc'}}"><i class="fa fa-angle-right" aria-hidden="true"></i>Terms & Conditions</a></li>
                             <li><a href="{{'/company/about-us'}}"><i class="fa fa-angle-right" aria-hidden="true"></i>About Us</a></li>
-                            <li><a href="{{'/company/support'}}"><i class="fa fa-angle-right" aria-hidden="true"></i>Help & Support</a></li>
+                            <li><a href="{{'/company/contact-us'}}"><i class="fa fa-angle-right" aria-hidden="true"></i>Help & Support</a></li>
                             <li><a href="{{'/company/career'}}"><i class="fa fa-angle-right" aria-hidden="true"></i>Careers</a></li>
                             <li><a href="{{'/company/privacy-policy'}}"><i class="fa fa-angle-right" aria-hidden="true"></i>Privacy Policy</a></li>
                             <li><a href="{{'/company/refund-policy'}}"><i class="fa fa-angle-right" aria-hidden="true"></i>Refund Policy</a></li>

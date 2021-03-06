@@ -71,6 +71,20 @@ class Mail
 
     }
 
+    public static function sendContact($from, $subject, $text, $html)
+    {
+
+        $mg = Mailgun::create($_ENV['MAILGUN_API_KEY'], 'https://api.mailgun.net/v3/mg.mailgun.org');
+        $domain = $_ENV['MAILGUN_DOMAIN'];
+
+        $mg->messages()->send($domain,['from'    => 'RS Lectures <support@rslectures.com>',
+            'to'      => 'rspubhouse@gmail.com',
+            'subject' => $subject,
+            'text'    => $text,
+            'html'    => $html]);
+
+    }
+
     public static function sendEmailThroughPHPMailer(){
 
         /**

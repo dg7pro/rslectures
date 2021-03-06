@@ -21,27 +21,37 @@
                 <h1 class="mb-5">Contact Us</h1>
             </div>
         </div>
+
+        <div class="mt-2">
+            @include('layouts.partials.flash')
+        </div>
+
         <div class="row">
             <div class="col-md-6 mb-5">
-                <form>
+                <form method="post" action="{{'/company/submit-contact'}}">
                     <div class="form-group">
-                        <input type="name" class="form-control" id="exampleInputName" placeholder="Your Full Name...">
+                        <input type="text" name="c_name" class="form-control" id="exampleInputName" placeholder="Your Full Name..." required>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Email Address...">
+                        <input type="email" name="c_email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Your Email Address..." required>
                     </div>
                     <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1" >
-                            <option>New Query</option>
-                            <option>Book Publishing</option>
-                            <option>Grievance</option>
-                            <option>Feedback</option>
+                        <select class="form-control" id="exampleFormControlSelect" name="c_type" required>
+                            <option value="" selected>Select Category</option>
+                            <option value="New Query">New Query</option>
+                            <option value="Book Publishing">Book Publishing</option>
+                            <option value="Grievance">Grievance</option>
+                            <option value="Feedback">Feedback</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" aria-label="With textarea" style="height: 160px"></textarea>
+                        <input type="text" name="c_subject" class="form-control" id="exampleInputSubject" placeholder="Subject of query" required>
                     </div>
-                    <button type="submit" class="btn btn-warning btn-lg btn-block">Submit</button>
+                    <div class="form-group">
+                        <textarea class="form-control" name="c_message" aria-label="With textarea" style="height: 160px"
+                                  placeholder="Write in brief your query, mentioning your contact number..." required></textarea>
+                    </div>
+                    <button type="submit" name="query" value="submit" class="btn btn-warning btn-lg btn-block">Submit</button>
                 </form>
             </div>
             <div  class="col-md-6">

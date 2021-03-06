@@ -1,0 +1,7 @@
+{{ name }} has contacted R S Publishing House
+
+{{ subject }}
+
+{{ message }}
+
+User email: {{ email }}

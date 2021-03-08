@@ -64,6 +64,12 @@ class Home extends Controller
         View::renderBlade('500');
     }
 
+    public function catalogAction(){
+
+        $notes = Group::fetchAll();
+        View::renderBlade('home/catalog',['eNotes'=>$notes]);
+    }
+
 
     /* ***********************************************
      *  For Testing Purpose

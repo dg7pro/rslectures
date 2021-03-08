@@ -9,7 +9,7 @@
         </div>
 
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-            <h1 class="display-4 text-info">Courses Available</h1>
+            <h1 class="display-4 text-info">eNotes Available</h1>
             <p class="">Please subscribe to the courses you are studying in. Our study material is built with utmost care so that students
                 can obtain maximum marks out off it. It covers every topic of all the subjects.
                 Click on the info icon <span class="text-primary"><i class="fas fa-info-circle"></i></span>

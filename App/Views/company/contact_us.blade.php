@@ -41,6 +41,7 @@
                             <option value="New Query">New Query</option>
                             <option value="Book Publishing">Book Publishing</option>
                             <option value="Grievance">Grievance</option>
+                            <option value="Grievance">Refund</option>
                             <option value="Feedback">Feedback</option>
                         </select>
                     </div>
@@ -55,11 +56,13 @@
                 </form>
             </div>
             <div  class="col-md-6">
+                <h4 class="text-info">R S Publishing House</h4>
+                <h5><span class="text-muted">www.rslectures.com</span></h5>
                 <h5>Need assistance? <small class="text-muted"> Please feel free to contact us for any query or support. We are always eager to hear from you. </small></h5>
                 <h5>Email: <small class="text-muted">rspubhouse@gmail.com</small></h5>
-                <h5>Contact: <small class="text-muted">+91 9453177545 || +91 9453351473</small></h5>
+                <h5>Contact: <small class="text-muted">+91 9453177545</small></h5>
 
-                <div class="text-left mt-4">
+                <div class="text-left mt-2">
                     <img class="img-fluid contact-image rounded" alt="Google Map" src="/images/varanasi-1.png" >
                 </div>
             </div>

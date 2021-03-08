@@ -91,11 +91,13 @@
                         <h5>Quick Contact</h5>
                         <div class="kilimanjaro_single_contact_info">
                             <h5>Phone:</h5>
-                            <p>+91 9453177545<br> +91 9453177545</p>
+                            <p><i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> +91 9453177545</p>
+                            <p><i class="fa fa-whatsapp " aria-hidden="true"></i> +91 9453177545</p>
                         </div>
                         <div class="kilimanjaro_single_contact_info">
                             <h5>Email:</h5>
-                            <p>support@rslectures.com <br> rspubhouse@gmail.com</p>
+                            <p><i class="fa fa-envelope-o" aria-hidden="true"></i> support@rslectures.com </p>
+                            <p><i class="fa fa-envelope-o" aria-hidden="true"></i> rspubhouse@gmail.com </p>
                         </div>
                     </div>
                     <div class="kilimanjaro_part">

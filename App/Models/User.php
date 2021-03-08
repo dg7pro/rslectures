@@ -866,6 +866,16 @@ class User extends \Core\Model
 
     }
 
+    public function orders(){
+
+        $sql = "SELECT * FROM  orders WHERE user_id=?";
+        $pdo=Model::getDB();
+        $stmt=$pdo->prepare($sql);
+        $stmt->execute([$this->id]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    }
+
     public function subscribedGroups(){
 
         $sql = "SELECT group_id FROM user_group WHERE user_id=?";

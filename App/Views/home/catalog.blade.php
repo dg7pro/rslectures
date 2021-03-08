@@ -1,0 +1,141 @@
+@extends('layouts.boot')
+
+@section('content')
+
+    <div class="container">
+
+        <div class="mt-2">
+            @include('layouts.partials.flash')
+        </div>
+
+        <div>
+            <h2 class="text-info mt-4">Courses Catalog</h2>
+            <p><i>Important points to be noted:</i></p>
+
+            <ul>
+                <li><i class="fa fa-angle-right" aria-hidden="true"></i> All study materials are 7 days no question asked money back guarantee (Download links disabled for 7 days)</li>
+                <li><i class="fa fa-angle-right" aria-hidden="true"></i> Study materials are delivered in PDF, Word Docx, PPT
+                formats etc which can be either read online or can be easily downloaded.
+                </li>
+                <li><i class="fa fa-angle-right" aria-hidden="true"></i> All study materials are updated on regular basis so that it is exactly according to the syllabus of chosen university</li>
+                <li><i class="fa fa-angle-right" aria-hidden="true"></i> No need to buy separate expensive books of each subjects individually (All subjects covered)</li>
+                <li><i class="fa fa-angle-right" aria-hidden="true"></i> Contents are prepared by expert Gurus of each subjects  </li>
+                <li><i class="fa fa-angle-right" aria-hidden="true"></i> Each lesson is designed to be studied in 1-2 hrs  </li>
+                <li><i class="fa fa-angle-right" aria-hidden="true"></i> Designed to obtain good marks  </li>
+            </ul>
+        </div>
+
+        <div class="mt-4 mb-4">
+            <a class="btn btn-success btn-lg" href="{{'/subscribe/index'}}" role="button">Purchase</a>
+        </div>
+
+        <div class="row mt-5 mb-3">
+            <div class="col-lg-12">
+{{--                <div class="card card-default">--}}
+{{--                    <div class="card-header card-header-border-bottom">--}}
+{{--                        <h2>--}}
+{{--                            Available Study Materials--}}
+{{--                        </h2>--}}
+{{--                    </div>--}}
+{{--                    <div class="card-body">--}}
+{{--                        <p class="mb-5">Here is the list of all the courses available on this portal</p>--}}
+
+                        <div>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Sno.</th>
+                                    <th scope="col">Study Material</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Details</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($eNotes as $eNote)
+                                    <tr>
+                                        <th scope="row">{{$eNote['sno']}}</th>
+                                        <td>
+                                            {{$eNote['name']}}
+                                            @if($eNote['open'])
+                                                <span class="small text-success mark"><em>{{'(eNotes Available)'}}</em></span>
+                                            @else
+                                                <span class="small text-success mark"><em>{{'(eNotes Available)'}}</em></span>
+                                            @endif
+
+                                        </td>
+                                        <td>{{$eNote['price']}}</td>
+                                        <td><button type="button" onclick="return showDetails({{$eNote['id']}})" class="mb-1 btn btn-sm btn-info">Topics covered</button></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+{{--                    </div>--}}
+{{--                </div>--}}
+            </div>
+
+        </div>
+
+        <div class="mb-5">
+            <a class="btn btn-success btn-lg" href="{{'/subscribe/index'}}" role="button">Purchase</a>
+        </div>
+
+        <!-- List Modal -->
+        <div class="modal fade" id="modal-course-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Various subjects and topics covered</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="records_content">
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    @include('layouts.footer2')
+
+
+
+@endsection
+
+
+@section('script')
+    <script>
+        // function showComingSoon(){
+        //     console.log('Hello');
+        //     $('#modal-group').modal("show");
+        //     return false;
+        // }
+
+        function showDetails(id){
+            console.log(id);
+            $('#group_id').val(id);
+            $.post("/adjax/fetchCourseDetails",{groupId:id},function (data, status) {
+
+                console.log(data);
+                $('#records_content').html(data);
+
+            });
+            $('#modal-course-info').modal("show");
+            return false;
+        }
+
+    </script>
+
+
+@endsection
+

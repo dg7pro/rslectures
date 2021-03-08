@@ -14,14 +14,17 @@
                     <a class="nav-link" href="{{'/account/welcome'}}"><mark> Dashboard</mark></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{'/subscribe/index'}}"><mark> Courses</mark></a>
+                    <a class="nav-link" href="{{'/subscribe/index'}}"><mark> Study Materials</mark></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'/home/catalog'}}"><mark> Catalog</mark></a>
                 </li>
                 {{--<li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>--}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        My Area
+                        <mark>My Area</mark>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @foreach($courses as $course)
@@ -44,7 +47,10 @@
                     <a class="nav-link" href="{{'/account/welcome'}}"><mark>Dashboard</mark> </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{'/subscribe/index'}}"><mark> Courses</mark></a>
+                    <a class="nav-link" href="{{'/subscribe/index'}}"><mark> Study Materials</mark></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'/home/catalog'}}"><mark> Catalog</mark></a>
                 </li>
             @endif
         </ul>
@@ -61,6 +67,8 @@
 
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">{{'UID: '.$authUser->code}}</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{'/account/welcome'}}">Dashboard</a>
                             <a class="dropdown-item" href="{{'/account/edit-profile'}}">Edit Profile</a>
                             <div class="dropdown-divider"></div>

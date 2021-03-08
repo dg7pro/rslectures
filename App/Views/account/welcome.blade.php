@@ -11,18 +11,45 @@
         </div>
 
         <div class="row mb-5">
+            <div class="col-sm-12 col-md-6 mt-3">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action">User name: <span class="text-success mark"><em>
+                                {{$authUser->first_name.' '.$authUser->last_name}}</em></span></a>
+                    <a class="list-group-item list-group-item-action">Mobile: <span class="text-success mark"><em>
+                                {{$authUser->mobile}}</em></span></a>
+                    <a class="list-group-item list-group-item-action">Email address: <span class="text-success mark"><em>
+                                {{$authUser->email}}</em></span></a>
+                    <a class="list-group-item list-group-item-action">Permanent userId: <span class="text-success mark"><em>{{$authUser->code}}</em></span></a>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 mt-3">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action text-success">Your Orders List:</a>
+                    @if(count($myOrders)>0)
+                        @foreach($myOrders as $row)
+                            <a class="list-group-item list-group-item-action"><b>{{$row->order_id}}</b>{{' '.$row->course}}</a>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+        </div>
+
+        <h3 class="text-info">Your eNotes: </h3>
+        <div class="row mb-5">
             @foreach($courses2 as $course)
             <div class="col-sm-12 col-md-4 mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{$course->name}}</h5>
-                        <p class="card-text">{{$course->descr}}</p>
-                        <a href="{{'/page/list-subject-new?gid='.$course->id}}" class="btn btn-primary">Continue Learning</a>
+                        <span class="card-text"><i>{{'Course Lecture for:'}}</i></span>
+                        <h5 class="card-title mt-2 text-info">{{$course->name}}</h5>
+
+                        <a href="{{'/page/list-subject-new?gid='.$course->id}}" class="btn btn-info">Continue Learning</a>
                     </div>
                 </div>
             </div>
             @endforeach
-
         </div>
 
         <br><br>

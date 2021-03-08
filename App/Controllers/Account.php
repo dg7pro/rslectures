@@ -40,6 +40,8 @@ class Account extends Authenticated
         // Fetch user
         $user = Auth::getUser();
 
+        $myOrders = $user->orders();
+
         $courses2 = $user->groups();
         $num = count($courses2);
 
@@ -61,7 +63,8 @@ class Account extends Authenticated
                 // Render view
                 View::renderBlade('account.welcome',[
                     'authUser'=>$user,
-                    'courses2'=>$courses2
+                    'courses2'=>$courses2,
+                    'myOrders'=>$myOrders
                 ]);
             }
         }

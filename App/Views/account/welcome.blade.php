@@ -4,7 +4,7 @@
 
     <div class="container mb-5">
 
-        <h1 class="text-info mt-5">Dashboard</h1>
+        <h2 class="text-info mt-5">Dashboard</h2>
 
         <div class="mt-2">
             @include('layouts.partials.flash')
@@ -45,7 +45,7 @@
                         <span class="card-text"><i>{{'Course Lecture for:'}}</i></span>
                         <h5 class="card-title mt-2 text-info">{{$course->name}}</h5>
 
-                        <a href="{{'/page/list-subject-new?gid='.$course->id}}" class="btn btn-info">Continue Learning</a>
+                        <a href="{{'/page/load?gid='.$course->id}}" class="btn btn-info">Continue Learning</a>
                     </div>
                 </div>
             </div>

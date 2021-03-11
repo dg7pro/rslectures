@@ -209,6 +209,34 @@
             });
         }
 
+        //=================
+        //  Publish  Content
+        //=================
+        function publishContent(id){
+
+            $.post("/AjaxEditorContent/publishEditorContentRecord",{
+                id:id
+
+            },function (data, status) {
+                console.log(data);
+                readRecords();
+            });
+        }
+
+        //=================
+        //  Un-Publish  Content
+        //=================
+        function unPublishContent(id){
+
+            $.post("/AjaxEditorContent/unpublishEditorContentRecord",{
+                id:id
+
+            },function (data, status) {
+                console.log(data);
+                readRecords();
+            });
+        }
+
         function showNewContentForm(){
 
             document.getElementById("new-content-title").value=null;

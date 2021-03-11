@@ -380,18 +380,19 @@ class User extends \Core\Model
      * ***************************************
      * */
 
-
-    public function updatePassword($pwd){
-
+    /**
+     * @param $password
+     * @return bool
+     */
+    public function updatePassword($password) :bool
+    {
         $id = $this->id;
-        $ph = password_hash($pwd, PASSWORD_DEFAULT);
+        $ph = password_hash($password, PASSWORD_DEFAULT);
 
         $sql = "UPDATE users SET password_hash=? WHERE id=?";
         $pdo = Model::getDB();
         $stmt=$pdo->prepare($sql);
         return $stmt->execute([$ph,$id]);
-
-
     }
 
 

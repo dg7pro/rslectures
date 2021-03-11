@@ -1,11 +1,18 @@
 @extends('layouts.boot')
 
+@section('custom_css')
+
+@endsection
+
 @section('content')
 
     <div class="container">
 
-        <h1 class="mt-5">{{$content['title']}}</h1>
-        {!! $content['matter']  !!}
+        <!-- Lesson Contents for students-->
+        <div class="mt-5">
+            <h2 class="text-primary">{{$content['title']}}</h2>
+            {!! $content['matter']  !!}
+        </div>
 
     </div>
 

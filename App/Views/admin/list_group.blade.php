@@ -1,13 +1,5 @@
 @extends('layouts.boot')
 
-@section('custom_css')
-    <style>
-        .my-coral{
-            background-color: coral;
-        }
-    </style>
-@endsection
-
 @section('content')
 
     <div class="container-fluid">
@@ -191,12 +183,6 @@
                                     <option value="LavenderBlush">LavenderBlush</option>
                                     <option value="LightGoldenRodYellow">LightGoldenRodYellow</option>
 
-
-
-                                    {{--<option value="lightpink">LightPink</option>--}}
-                                    {{--<option value="lightskyblue">LightSkyBlue</option>--}}
-                                    {{--<option value="Yellow">Yellow</option>--}}
-
                                 </select>
                             </div>
 
@@ -235,18 +221,6 @@
 @endsection
 
 @section('script')
-
-    {{-- <script>
-         function getGroupInfo(){
-
-             var gn = $(this).attr("data-group")
-             console.log(gn);
-             $('#recipient-name').html(gn);
-             $('#modal-group').modal("show");
-         }
-     </script>
- --}}
-
 
     <script>
         $(document).ready(function(){
@@ -366,8 +340,6 @@
                     if(response.status === false){
                         alert(response.message);
                     }
-
-
                 });
             }
 

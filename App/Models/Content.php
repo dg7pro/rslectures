@@ -182,7 +182,7 @@ class Content extends Model
         $sql = "SELECT c.unit,c.id,c.type,c.subject_id,c.title,c.unit,c.publish,c.sno,p.name,p.id AS fid
                 FROM contents AS c
                 LEFT JOIN files AS p ON  p.content_id = c.id
-                WHERE subject_id=? ORDER BY sno";
+                WHERE subject_id=? ORDER BY unit,sno";
         $pdo=Model::getDB();
         $stmt=$pdo->prepare($sql);
         $stmt->execute([$subjectId]);
@@ -207,8 +207,8 @@ class Content extends Model
 
     public static function fetchEditorContentWithUnit($subjectId){
 
-        $sql = "SELECT contents.unit,id,subject_id,title,unit,sno FROM contents 
-                WHERE subject_id=? AND type='editor' ORDER BY sno";
+        $sql = "SELECT contents.unit,id,subject_id,title,unit,publish,sno FROM contents 
+                WHERE subject_id=? AND type='editor' ORDER BY unit,sno";
         $pdo = Model::getDB();
         $stmt=$pdo->prepare($sql);
         $stmt->execute([$subjectId]);
@@ -250,6 +250,33 @@ class Content extends Model
         $stmt=$pdo->prepare($sql);
         $stmt->execute([$subjectId]);
         $results = $stmt->fetchAll(PDO::FETCH_GROUP|PDO::FETCH_ASSOC);
+
+        $arr = array();
+        $newKey = 0;
+        foreach ($results as $k=>$v){
+
+            //echo $k;
+            if(!in_array($k,$arr)){
+                $newKey++;
+                $arr[$newKey]['no']=$k;
+                $arr[$newKey]['lessons']=$v;
+            }
+        }
+        return $arr;
+    }
+
+    public static function fetchPublishedChaptersWithUnit($subjectId) :array
+    {
+
+        $sql = "SELECT c.unit,c.id,c.type,c.subject_id,c.title,c.unit,c.publish,c.sno,p.name,p.id AS fid
+                FROM contents AS c
+                LEFT JOIN files AS p ON  p.content_id = c.id
+                WHERE subject_id=? AND publish=? ORDER BY unit,sno";
+
+        $pdo = Model::getDB();
+        $stmt=$pdo->prepare($sql);
+        $stmt->execute([$subjectId,1]);
+        $results = $stmt->fetchAll(PDO::FETCH_GROUP | PDO::FETCH_ASSOC);
 
         $arr = array();
         $newKey = 0;

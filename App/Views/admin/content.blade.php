@@ -10,23 +10,24 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-fluid">
 
-        {{--<div class="row mb-4">
+        <div class="row mt-3">
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-info">
-                        <li class="breadcrumb-item"><a href="#">Administrator</a></li>
-                        <li class="breadcrumb-item"><a href="{{'/admin'}}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit Content Matter</li>
+                        <li class="breadcrumb-item"><a href="{{'/'}}">RS Lectures</a></li>
+                        <li class="breadcrumb-item"><a href="{{'/admin/index'}}">Admin Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{'/admin/list-group'}}">Courses</a></li>
+                        <li class="breadcrumb-item"><a href="{{'/admin/list-content-txt?sid='.$content['subject_id']}}">Editors List</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{$content['title']}}</li>
                     </ol>
                 </nav>
             </div>
         </div>
---}}
 
         <!-- First Row  -->
-        <div class="row mt-5">
+        <div class="row mt-3 mb-5">
             <div class="col-lg-12">
                 <h2>
                     {{$content['title']}}<a href="{{'/lesson/index?cid='.$content['id']}}" target="_blank" class="ml-3"><i class="fas fa-external-link-alt"></i></a>
@@ -43,14 +44,8 @@
                         <button type="submit" name="update_content" class="btn btn-lg btn-dark mt-4">Update Content</button>
                     </form>
                 </div>
-
             </div>
-
         </div>
-
-
-
-
 
     </div>
 @endsection

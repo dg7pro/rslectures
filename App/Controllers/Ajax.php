@@ -117,7 +117,7 @@ class Ajax extends Controller
     }
 
     /**
-     *  Validate User Email
+     * Validate User Email
      */
     public function checkEmailAction(){
 
@@ -182,7 +182,8 @@ class Ajax extends Controller
     }
 
     /**
-     *  Fetch all Groups
+     * Fetch all lessons
+     * Used in list_subject view
      */
     public function fetchLessonRecords(){
 
@@ -224,9 +225,59 @@ class Ajax extends Controller
     }
 
     /**
-     *  Fetch lesson links for sidebar
+     * Fetch all lessons
+     * Used in list_subject view
      */
-    public function fetchLessonLinks(){
+    public function fetchPublishedLessonRecords(){
+
+        if(isset($_POST['readlesson'])){
+            $data = '<table class="table table-bordered">
+                <thead class="tbl-header">
+                <tr>
+                    <th colspan="3" class="my-heading">'.$_POST['title'].'</th>
+                                           
+                </tr></thead><tbody>';
+
+            $arr = Content::fetchPublishedChaptersWithUnit($_POST['sid']);
+            $num = count($arr);
+
+            if($num>0){
+                foreach($arr as $unit) {
+                    $counter = count($unit['lessons']);
+                    if($counter>0){
+                        $data .= '<tr><td colspan="3">'.'Unit: '.$unit['no'].'</td></tr>';
+                        foreach ($unit['lessons'] as $row){
+                            $data .= '<tr>
+                            <td>'.$row['sno'].'</td>';
+
+                            if($row['type']=='editor'){
+                                $data .= '<td><a href="/lesson/index?cid='.$row['id'].'" target="_blank">'.$row['title'].'</a></td>
+                                            <td><span><i class="fa fa-chrome icon-web"  aria-hidden="true"></i></span></td>';
+                            }else{
+                                $data .= '<td><a href="/lesson/file?pdf='.$row['name'].'" target="_blank">'.$row['title'].'</a></td>
+                                            <td><span><i class="fa fa-file-pdf icon-pdf" aria-hidden="true"></i></span></td>';
+                            }
+
+                            $data .='</tr>';
+                        }
+                    }
+                }
+            }else{
+                $data .= '<tr>
+                    <td colspan="2">No lessons found.....</td>
+                </tr>';
+            }
+
+            $data .='</tbody></table>';
+            echo $data;
+        }
+    }
+
+    /**
+     * Fetch lesson links for sidebar
+     * Used in lesson
+     */
+    /*public function fetchLessonLinks(){
 
         if(isset($_POST['lesson_links'])){
             $data = '<p>'.$_POST['s_name'].'</p>';
@@ -246,6 +297,6 @@ class Ajax extends Controller
             echo $data;
 
         }
-    }
+    }*/
 
 }

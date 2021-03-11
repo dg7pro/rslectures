@@ -5,7 +5,6 @@ namespace App\Controllers;
 
 
 use App\Models\Content;
-use App\Models\Subject;
 use Core\Controller;
 use Core\View;
 
@@ -17,47 +16,34 @@ class Lesson extends Controller
 {
 
     /**
-     * Show Lesson
+     * Render text content
+     *
+     * @return void
      */
     public function indexAction(){
 
         $content_id = $_GET['cid'];
+        if(empty($content_id)){
+            $this->redirect('/home/page-not-found');
+        }
         $content = Content::fetch($content_id);
-
-        $subject = Subject::fetch($content['subject_id']);
-        $lessons = Content::fetchAll($subject['id']);
-
-        View::renderBlade('lesson.index_sb2',['content'=>$content,'subject'=>$subject,'lessons'=>$lessons]);
+        View::renderBlade('lesson.index',['content'=>$content]);
 
     }
 
     /**
-     * Show Lesson
+     * Render pdf file
+     *
+     * @return void
      */
     public function fileAction(){
 
-        $pdf_id = $_GET['pdf'];
-        $content = Content::fetch($pdf_id);
-
-        $subject = Subject::fetch($content['subject_id']);
-        $lessons = Content::fetchAll($subject['id']);
-
-        View::renderBlade('lesson.index_sb2',['content'=>$content,'subject'=>$subject,'lessons'=>$lessons]);
-
-    }
-
-    public function displayAction(){
-
         $pdf = $_GET['pdf'];
-        //$pdf = "demo_lesson_1.pdf";
-        //$pdf = "New_Horizons.pdf";
-
-        View::renderBlade('lesson.htmlpdf',['pdf'=>$pdf]);
-        // https://wpscholar.com/blog/prevent-directory-browsing-with-htaccess/
+        if(empty($pdf)){
+            $this->redirect('/home/page-not-found');
+        }
+        View::renderBlade('lesson.file',['pdf'=>$pdf]);
 
     }
-
-
-
 
 }

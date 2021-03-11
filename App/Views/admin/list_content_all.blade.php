@@ -23,48 +23,14 @@
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom">
-                        <h2>Change Order
+                        <h2>All Contents:
 
                         </h2>
                     </div>
                     <div class="card-body">
-                        {{--                        <p class="mb-5">These users need approval before their profile gets live.</p>--}}
-                        <p class="mb-5">This is the order in which contents will be visible.</p>
-
+                        <p class="mb-5">Check links and shuffle sequence. This is the order in which contents will be visible.</p>
                         <form>
                         <div id="records_content">
-                            {{--<table class="table table-bordered">
-                                <tbody>
-                                <form action="">
-                                    @if(count($arr)>0)
-                                        @foreach($arr as $unit)
-                                            @if(count($unit['lessons'])>0)
-                                                <tr><td colspan="3">Unit: {{$unit['no']}}</td></tr>
-
-                                                @foreach($unit['lessons'] as $row)
-                                                    <tr>
-                                                        <td>{{ $row['id'] }}</td>
-                                                        <td><a href="/lesson/display?pdf={{$row['name']}}" target="_blank">{{$row['title']}}</a></td>
-                                                        <td>
-                                                            <select class="form-control" id="exampleFormControlSelect1" name="sno[]">
-                                                                <option>Change Order</option>
-                                                                @for($i=1;$i<=$num;$i++)
-                                                                    <option value="{{$i}}" {{$row['sno']==$i?'Selected':''}}>{{$i}}</option>
-                                                                @endfor
-
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-
-                                                @endforeach
-                                            @endif
-                                        @endforeach
-
-                                    @endif
-                                </form>
-                                </tbody>
-                            </table>--}}
-
 
                         </div>
                         </form>
@@ -104,6 +70,9 @@
             })
         }
 
+        //=================
+        // Change Order
+        //=================
         function setSno($id, $sno){
 
             console.log($id);
@@ -122,10 +91,7 @@
                     }
                 });
             }
-
-
         }
-
     </script>
 
 

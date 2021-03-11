@@ -1,183 +1,116 @@
-<html>
-<head>
-    <title>Webslesson Demo - PHP PDO Ajax CRUD with Data Tables and Bootstrap Modals</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+@extends('layouts.boot')
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+@section('custom_css')
     <style>
-        body
-        {
-            margin:0;
-            padding:0;
-            background-color:#f1f1f1;
-        }
-        .box
-        {
-            width:1270px;
-            padding:20px;
-            background-color:#fff;
-            border:1px solid #ccc;
-            border-radius:5px;
-            margin-top:25px;
+        .my-coral{
+            background-color: coral;
         }
     </style>
-</head>
-<body>
-<div class="container box">
-    <h1 align="center">PHP PDO Ajax CRUD with Data Tables and Bootstrap Modals</h1>
-    <br />
-    <div class="table-responsive">
-        <br />
-        <div align="right">
-            <button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">Add</button>
+@endsection
+
+@section('content')
+
+    <div class="container">
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-info">
+                        <li class="breadcrumb-item"><a href="{{'/'}}">RS Lectures</a></li>
+                        <li class="breadcrumb-item"><a href="{{'/admin/index'}}">Admin Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Courses</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
-        <br /><br />
-        <table id="user_data" class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <th width="10%">Id</th>
-                <th width="35%">First Name</th>
-                <th width="35%">Last Name</th>
-                <th width="10%">Edit</th>
-                <th width="10%">Delete</th>
-            </tr>
-            </thead>
-        </table>
 
-    </div>
-</div>
-</body>
-</html>
+        <div class="card mt-3 mb-3">
+            <div class="card-header">
+                Search User
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <input type="text" id="search_box" name="search_box" class="form-control"
+                           placeholder="Type your search query here...">
+                </div>
+                <div class="table-responsive" id="dynamic_content"></div>
+            </div>
+        </div>
 
-<div id="userModal" class="modal fade">
-    <div class="modal-dialog">
-        <form method="post" id="user_form" enctype="multipart/form-data">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add User</h4>
-                </div>
-                <div class="modal-body">
-                    <label>Enter First Name</label>
-                    <input type="text" name="first_name" id="first_name" class="form-control" />
-                    <br />
-                    <label>Enter Last Name</label>
-                    <input type="text" name="last_name" id="last_name" class="form-control" />
-                    <br />
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="user_id" id="user_id" />
-                    <input type="hidden" name="operation" id="operation" />
-                    <input type="submit" name="action" id="action" class="btn btn-success" value="Add" />
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+        <div class="modal fade" id="modal-user-groups" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Associated Groups</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       <div id="associated_groups">
+
+                       </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
+
+
+
+
     </div>
-</div>
+@endsection
 
-<script type="text/javascript" language="javascript" >
-    $(document).ready(function(){
-        $('#add_button').click(function(){
-            $('#user_form')[0].reset();
-            $('.modal-title').text("Add User");
-            $('#action').val("Add");
-            $('#operation').val("Add");
-        });
+@section('script')
 
-        var dataTable = $('#user_data').DataTable({
-            "processing":true,
-            "serverSide":true,
-            "order":[],
-            "ajax":{
-                url:"/Adjax/fetch-user-records",
-                type:"POST"
-            },
-            "columnDefs":[
-                {
-                    "targets":[0, 3, 4],
-                    "orderable":false,
-                },
-            ],
+    <script>
+        $(document).ready(function (){
 
-        });
+            load_data(1);
 
-        $(document).on('submit', '#user_form', function(event){
-            event.preventDefault();
-            var firstName = $('#first_name').val();
-            var lastName = $('#last_name').val();
-
-            if(firstName != '' && lastName != '')
-            {
+            function load_data(page, query=''){
                 $.ajax({
-                    url:"/Adjax/insert-user-record",
-                    method:'POST',
-                    data:new FormData(this),
-                    contentType:false,
-                    processData:false,
-                    success:function(data)
-                    {
-                        alert(data);
-                        $('#user_form')[0].reset();
-                        $('#userModal').modal('hide');
-                        dataTable.ajax.reload();
+                    url: "/Adjax/search-user",
+                    method: "POST",
+                    data:{
+                        page:page,
+                        query:query
+                    },
+                    success:function(data){
+                        $('#dynamic_content').html(data);
                     }
-                });
+                })
             }
-            else
-            {
-                alert("Both Fields are Required");
-            }
-        });
 
-        $(document).on('click', '.update', function(){
-            var user_id = $(this).attr("id");
-            $.ajax({
-                url:"/Adjax/fetch-single-user-record",
-                method:"POST",
-                data:{user_id:user_id},
-                dataType:"json",
-                success:function(data)
-                {
-                    console.log(data);
-                    $('#userModal').modal('show');
-                    $('#first_name').val(data.first_name);
-                    $('#last_name').val(data.last_name);
-                    $('.modal-title').text("Edit User");
-                    $('#user_id').val(user_id);
-                    $('#action').val("Edit");
-                    $('#operation').val("Edit");
-                }
-            })
-        });
+            $(document).on('click', '.page-link', function(){
+                var page = $(this).data('page_number');
+                var query = $('#search_box').val();
+                load_data(page, query);
+            });
 
-        $(document).on('click', '.delete', function(){
-            var user_id = $(this).attr("id");
-            if(confirm("Are you sure you want to delete this?"))
-            {
-                $.ajax({
-                    url:"/Adjax/delete-user-record",
-                    method:"POST",
-                    data:{user_id:user_id},
-                    success:function(data)
-                    {
-                        alert(data);
-                        dataTable.ajax.reload();
-                    }
-                });
-            }
-            else
-            {
-                return false;
-            }
-        });
+            $('#search_box').keyup(function(){
+                var query = $('#search_box').val();
+                load_data(1, query);
+            });
+
+        })
 
 
-    });
-</script>
+        function getUserCourseInfo(id){
+            console.log(id);
+            $.post("/adjax/fetchUserCourseRecord",{userId:id},function (data, status) {
+                console.log(data);
+                $('#associated_groups').html(data);
+            });
+            $('#modal-user-groups').modal("show");
+        }
+
+
+    </script>
+
+@endsection
+

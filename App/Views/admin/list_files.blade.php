@@ -69,6 +69,9 @@
             })
         }
 
+        //=================
+        // Delete Record
+        //=================
         function deleteFileInfo(id){
 
             var result = window.confirm('Are you sure?');

@@ -9,15 +9,10 @@ use App\Models\Content;
 class AjaxEditorContent extends Administered
 {
 
-    /* ******************************************************************
-     * Editor Content Ajax Functions
-     *
-     * ****************************************************************** */
-
     /**
      *  Fetch all contents
      */
-    public function fetchContentRecords(){
+    /*public function fetchContentRecords(){
 
         $subjectId = $_POST['subjectId'];
         if(isset($_POST['readrecord'])){
@@ -50,10 +45,10 @@ class AjaxEditorContent extends Administered
             echo $data;
 
         }
-    }
+    }*/
 
     /**
-     *  Fetch all contents
+     *  Fetch records
      */
     public function fetchEditorContentRecordsWithUnit(){
 
@@ -74,8 +69,17 @@ class AjaxEditorContent extends Administered
                         foreach($unit['lessons'] as $row) {
                             $data .= '<tr>
                             <td>'.$row['sno'].'</td>                          
-                            <td><img src="/images/doc2.png" alt="doc"> <a href="/admin/content?id='.$row['id'].'">'.$row['title'].'</a></td>                    
-                            <td><button onclick="getContentInfo('.$row['id'].')" type="button" class="mb-1 btn btn-sm btn-info">Edit</button></td>                 
+                            <td><span><i class="fa fa-chrome icon-web"  aria-hidden="true"></i></span> <a href="/admin/content?id='.$row['id'].'">'.$row['title'].'</a></td>';
+
+                            if($row['publish']==0){
+                                $data .=
+                                    '<td><button onclick="publishContent('.$row['id'].')" type="button" class="mb-1 btn btn-sm btn-success">Publish</button></td>';
+                            }else{
+                                $data .='<td><button onclick="unPublishContent('.$row['id'].')" type="button" class="mb-1 btn btn-sm btn-warning ">Bublish</button></td>';
+                            }
+
+                            $data .=
+                            '<td><button onclick="getContentInfo('.$row['id'].')" type="button" class="mb-1 btn btn-sm btn-info">Edit</button></td>                 
                             <td><button onclick="deleteContentInfo('.$row['id'].')" type="button" class="mb-1 btn btn-sm btn-danger">Del</button></td>
                             </tr>';
                         }
@@ -90,9 +94,25 @@ class AjaxEditorContent extends Administered
         }
     }
 
+    /**
+     *  Add record
+     */
+    public function insertNewContentRecord(){
+
+        if(isset($_POST['title']) && $_POST['title']!=''){
+
+            $re = Content::insertEditorContent($_POST);
+            if(!$re){
+                echo 'Something went Wrong';
+            }
+            echo 'New Content Created';
+
+        }
+    }
+
 
     /**
-     *  Fetch Content
+     *  Fetch record
      */
     public function fetchSingleContentRecord(){
 
@@ -113,23 +133,7 @@ class AjaxEditorContent extends Administered
     }
 
     /**
-     *  Insert New Content
-     */
-    public function insertNewContentRecord(){
-
-        if(isset($_POST['title']) && $_POST['title']!=''){
-
-            $re = Content::insertEditorContent($_POST);
-            if(!$re){
-                echo 'Something went Wrong';
-            }
-            echo 'New Content Created';
-
-        }
-    }
-
-    /**
-     *  Update Content
+     *  Update record
      */
     public function updateSingleContentRecord(){
 
@@ -142,11 +146,10 @@ class AjaxEditorContent extends Administered
             echo 'Basic Info Updated';
 
         }
-
     }
 
     /**
-     *  Delete Content
+     *  Delete record
      */
     public function deleteContentRecord(){
 
@@ -164,11 +167,40 @@ class AjaxEditorContent extends Administered
             echo json_encode($response);
 
         }
+    }
+
+    /**
+     *  Publish Content
+     */
+    public function publishEditorContentRecord(){
+
+        if(isset($_POST['id'])){
+
+            $re = Content::publishContent($_POST);
+            if(!$re){
+                echo 'Something went Wrong';
+            }
+            echo 'Content Published Successfully';
+
+        }
 
     }
 
+    /**
+     *  unPublish Content
+     */
+    public function unpublishEditorContentRecord(){
 
+        if(isset($_POST['id'])){
 
+            $re = Content::unpublishContent($_POST);
+            if(!$re){
+                echo 'Something went Wrong';
+            }
+            echo 'Content UnPublished Successfully';
 
+        }
+
+    }
 
 }

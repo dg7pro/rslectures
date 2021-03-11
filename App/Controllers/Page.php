@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 
 use App\Flash;
+use App\Lib\Helpers;
 use App\Models\Content;
 use App\Models\Group;
 use App\Models\Subject;
@@ -126,6 +127,53 @@ class Page extends Controller
 
         View::renderBlade('page.list_content_new',['subject'=>$subject,'contents'=>$contents]);
     }
+
+    /**
+     *  list all the contents of particular subject
+     */
+    public function chaptersAction(){
+
+        $subject_id = $_GET['sid'];
+
+        $subject = Subject::fetch($subject_id);
+
+        $contents = Content::fetchPublishedChaptersWithUnit($subject_id);
+
+//        Helpers::dnd($contents);
+//        exit();
+
+        View::renderBlade('page.chapters',['subject'=>$subject,'contents'=>$contents]);
+    }
+
+    /**
+     *  list all the subjects for students
+     */
+    public function loadAction(){
+
+        $group_id = $_GET['gid'];
+
+        $course = Group::fetch($group_id);
+
+        if(!$course){
+
+            Flash::addMessage('Oops! that course does not exist.', Flash::WARNING);
+            $this->redirect('/home/page-not-found');
+        }
+
+        $flag = UserGroup::isLinked($course['id'],$_SESSION['user_id']);
+
+        if(!$flag){
+            Flash::addMessage('Please subscribe to this course', Flash::INFO);
+            $this->redirect('/subscribe/index');
+        }
+
+        $first = Subject::first($group_id);
+        $subjects = Subject::fetchAll($group_id);
+
+        View::renderBlade('page.my_chapters',['course'=>$course, 'first'=>$first, 'subjects'=>$subjects]);
+
+    }
+
 
 
 

@@ -11,13 +11,9 @@ class AjaxFileContent extends Administered
 {
 
     /**
-     * Admin Section
+     *  Create record
      */
-
-    /**
-     *  Insert New Content
-     */
-    public function insertNewFileContentRecord(){
+    public function insertNewFileContentRecordAction(){
 
         if(isset($_POST['title']) && $_POST['title']!=''){
 
@@ -31,9 +27,9 @@ class AjaxFileContent extends Administered
     }
 
     /**
-     *  Fetch all File contents
+     *  Fetch all file contents
      */
-    public function listContentsForChangingOrder(){
+    public function listContentsForChangingOrderAction(){
 
         $subjectId = $_POST['subjectId'];
         if(isset($_POST['readrecord'])){
@@ -57,10 +53,15 @@ class AjaxFileContent extends Administered
                         foreach($unit['lessons'] as $row) {
                             $data .= '<tr>
                             <td>'.$row['sno'].'</td>                           
-                            <td>
-                                <a href="/lesson/display?pdf='.$row['name'].'" target="_blank">'.$row['title'].'</a>
-                                <span class="small text-muted mark"><em>( '.$row['type'].' )</em></span>
-                            </td>
+                            <td>';
+                                if($row['type']=='editor'){
+                                    $data .= '<span><i class="fa fa-chrome icon-web"  aria-hidden="true"></i></span>
+                                    <a href="/lesson/index?cid='.$row['id'].'" target="_blank">'.$row['title'].'</a>';
+                                }else{
+                                    $data .= '<span><i class="fa fa-file-pdf icon-pdf"  aria-hidden="true"></i></span>
+                                    <a href="/lesson/file?pdf='.$row['name'].'" target="_blank">'.$row['title'].'</a>';
+                                }
+                                $data .= '<span class="small text-muted mark"><em>( '.$row['type'].' )</em></span></td>
                             <td>'.$row['sno'].'</td>
                             <td>
                                 <select class="form-control" id="exampleFormControlSelect1" name="sno'.$row['id'].'" onchange="setSno('.$row['id'].',this.value)">
@@ -86,7 +87,7 @@ class AjaxFileContent extends Administered
     }
 
     /**
-     * Change Order of File Contents
+     * Change order of file contents
      */
     public function changeOrderAction(){
 
@@ -106,7 +107,7 @@ class AjaxFileContent extends Administered
     /**
      *  Fetch all File contents
      */
-    public function fetchFileContentRecordsWithUnit(){
+    public function fetchFileContentRecordsWithUnitAction(){
 
         $subjectId = $_POST['subjectId'];
         $type = 'pdf';
@@ -126,7 +127,7 @@ class AjaxFileContent extends Administered
                         foreach($unit['lessons'] as $row) {
                             $data .= '<tr>
                             <td>'.$row['sno'].'</td>
-                            <td><img src="/images/pdf.png" alt="doc"> <a href="/lesson/display?pdf='.$row['name'].'" target="_blank">'.$row['title'].'</a></td>';
+                            <td><span><i class="fa fa-file-pdf icon-pdf" aria-hidden="true"></i></span> <a href="/lesson/file?pdf='.$row['name'].'" target="_blank">'.$row['title'].'</a></td>';
 
                             if($row['name']==''){
                                 $data .=
@@ -177,7 +178,7 @@ class AjaxFileContent extends Administered
     /**
      *  Fetch Content
      */
-    public function fetchSingleFileContentRecord(){
+    public function fetchSingleFileContentRecordAction(){
 
         if(isset($_POST['contentId']) && isset($_POST['contentId'])!=''){
 
@@ -198,7 +199,7 @@ class AjaxFileContent extends Administered
     /**
      *  Update Content
      */
-    public function updateSingleFileContentRecord(){
+    public function updateSingleFileContentRecordAction(){
 
         if(isset($_POST['id'])){
 
@@ -290,7 +291,6 @@ class AjaxFileContent extends Administered
 
         $data = File::getUnattachedFiles();
         echo json_encode($data);
-
 
     }
 

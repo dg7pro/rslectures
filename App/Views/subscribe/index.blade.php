@@ -51,7 +51,7 @@
 
                                     @if(in_array($group['id'],$subscribed))
                                         {{--<button type="submit" class="btn btn-lg btn-block btn-dark disabled">Subscribe</button>--}}
-                                        <a class="btn btn-lg btn-block btn-dark" href="{{'/page/list-subject-new?gid='.$group['id']}}" role="button">Learn Now</a>
+                                        <a class="btn btn-lg btn-block btn-dark" href="{{'/page/load?gid='.$group['id']}}" role="button">Learn Now</a>
                                     @else
                                         @if(!$group['open'])
                                             <button onclick="showComingSoon()" type="button" class="btn btn-lg btn-block btn-dark">Coming Soon</button>

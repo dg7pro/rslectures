@@ -65,6 +65,10 @@ class Company extends Controller
         View::renderBlade('company.tnc');
     }
 
+    /**
+     * Process contact us form
+     * post method
+     */
     public function submitContactAction(){
 
         if(isset($_POST['query']) && $_POST['query']==='submit'){

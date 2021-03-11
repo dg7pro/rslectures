@@ -6,7 +6,6 @@ namespace App\Controllers;
 
 use App\Auth;
 use App\Flash;
-use App\Models\User;
 use Core\View;
 
 /**
@@ -18,7 +17,7 @@ class Account extends Authenticated
 {
 
     /**
-     *  Logout User
+     * Logout user
      */
     public function logoutAction()
     {
@@ -30,7 +29,7 @@ class Account extends Authenticated
     }
 
     /**
-     *  Show User Dashboard
+     * Show user dashboard
      */
     public function welcomeAction()
     {
@@ -40,15 +39,12 @@ class Account extends Authenticated
         // Fetch user
         $user = Auth::getUser();
 
+        // Fetch Orders
         $myOrders = $user->orders();
 
+        // Fetch courses
         $courses2 = $user->groups();
         $num = count($courses2);
-
-        //$courses2 = $user->groupsNew();
-       /* var_dump($courses);
-        exit();*/
-
 
         if(empty($courses2)){
             Flash::addMessage('Oops! You have not subscribed to any course yet. Please subscribe below:', Flash::DANGER);
@@ -56,7 +52,14 @@ class Account extends Authenticated
         }
         else{
 
-            if($num<2){
+            // Render view
+            View::renderBlade('account.welcome',[
+                'authUser'=>$user,
+                'courses2'=>$courses2,
+                'myOrders'=>$myOrders
+            ]);
+
+            /*if($num<2){
                 $this->redirect('/Page/list-subject?gid='.$courses2[0]->id);
             }else{
 
@@ -66,22 +69,25 @@ class Account extends Authenticated
                     'courses2'=>$courses2,
                     'myOrders'=>$myOrders
                 ]);
-            }
+            }*/
         }
-
     }
 
+    /**
+     * Edit profile
+     */
     public function editProfileAction(){
 
         $user = Auth::getUser();
         View::renderBlade('account.edit_profile',['user'=>$user]);
 
-
     }
 
+    /**
+     * Change Password
+     * through post action
+     */
     public function changePasswordAction(){
-
-        //var_dump($_POST);
 
         $user = Auth::getUser();
 

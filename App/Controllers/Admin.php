@@ -21,104 +21,102 @@ use Core\View;
 class Admin extends Administered
 {
     /**
-     * Show index page
+     * Show dashboard
      */
     public function indexAction()
     {
         View::renderBlade('admin.index');
     }
 
-    /*---------------Start Group Section------------------*/
+    /* ==================================================================
+     * 1st Block
+     * Admin Groups Block 6 Functions
+     * ====================================================================
+     * */
 
     /**
-     *  List Groups
+     * List groups
+     * through ajax call
      */
-    public function listGroupAction(){
-
-        //$groups = Group::fetchAll();
+    public function listGroupAction()
+    {
         View::renderBlade('admin.list_group');
     }
 
     /**
-     *  Change Group Order
+     * Change groups order
      */
-    public function changeGroupOrderAction(){
-
-        //$sid = $_GET['sid'];
+    public function changeGroupOrderAction()
+    {
         $groups = Group::fetchAll();
-
-        View::renderBlade('admin.change_group_order',['groups'=>$groups]);
-
+        View::renderBlade('admin.list_group_order',['groups'=>$groups]);
     }
 
-    /*---------------End Group-------------------*/
-
-
     /**
-     *  List Subjects
+     * List subjects
+     * through Ajax call
      */
     public function listSubjectAction(){
 
         $gid = $_GET['gid'];            // group id
         $group = Group::fetch($gid);
-        //$subjects = Subject::fetchAll($group_id);
         View::renderBlade('admin.list_subject',['group'=>$group]);
     }
 
     /**
-     *  List Contents
+     * List all contents
+     * through ajax call
      */
-    public function listContentAction(){
-
-        $sid = $_GET['sid'];            // subject id
-        $subject = Subject::fetch($sid);
-        View::renderBlade('admin.list_content',['sid'=>$sid, 'subject'=>$subject]);
-
-    }
-
-    /**
-     *  List Lesson
-     */
-    public function listLessonAction(){
-
-        $sid = $_GET['sid'];            // subject id
-        $subject = Subject::fetch($sid);
-        View::renderBlade('admin.list_lesson',['sid'=>$sid, 'subject'=>$subject]);
-
-    }
-
-    /**
-     *  Change Order
-     */
-    public function changeOrderAction(){
+    public function listContentAllAction(){
 
         $sid = $_GET['sid'];
         $subject = Subject::fetch($sid);
-
-        View::renderBlade('admin.change_order',['sid'=>$sid, 'subject'=>$subject]);
-
+        View::renderBlade('admin.list_content_all',['sid'=>$sid, 'subject'=>$subject]);
     }
 
+    /**
+     * List pdf contents
+     * through Ajax call
+     */
+    public function listContentPdfAction(){
+
+        $sid = $_GET['sid'];            // subject id
+        $subject = Subject::fetch($sid);
+        View::renderBlade('admin.list_content_pdf',['sid'=>$sid, 'subject'=>$subject]);
+    }
+
+    /**
+     * List editor contents
+     * through Ajax Call
+     */
+    public function listContentTxtAction(){
+
+        $sid = $_GET['sid'];            // subject id
+        $subject = Subject::fetch($sid);
+        View::renderBlade('admin.list_content_txt',['sid'=>$sid, 'subject'=>$subject]);
+    }
+    /* *** */
+
+    /* ==================================================================
+     * 2nd Block
+     * Admin Users Block - 1 Functions
+     * ====================================================================
+     * */
 
     /**
      * List all Users
      */
     public function listUsersAction(){
 
-        //$groups = Group::fetchAll();
-        View::renderBlade('admin.list_user_new');
-
+        View::renderBlade('admin.list_user');
 
     }
 
-    /**
-     * List all pdf files
-     */
-    public function listFilesAction(){
-
-        View::renderBlade('admin.list_files');
-
-    }
+    /* ==================================================================
+     * 3rd Block
+     * Payments Order Block - 1 Functions
+     * ====================================================================
+     * */
 
     /**
      * List all Payment Orders
@@ -130,6 +128,26 @@ class Admin extends Administered
 
 
     }
+
+    /* ==================================================================
+     * 4th Block
+     * Unattached Files Block - 1 Functions
+     * ====================================================================
+     * */
+    /**
+     * List all pdf files
+     */
+    public function listFilesAction(){
+
+        View::renderBlade('admin.list_files');
+
+    }
+
+    /* ====================================================
+     * 1st & 5th Block
+     * Important General Functions - 9 Functions Total
+     * ====================================================
+     * */
 
     //=============================================================================
     // Contents Update through ck editor

@@ -64,143 +64,15 @@ class Home extends Controller
         View::renderBlade('500');
     }
 
+    /**
+     * Show catalog page
+     *
+     * @return void
+     */
     public function catalogAction(){
 
         $notes = Group::fetchAll();
         View::renderBlade('home/catalog',['eNotes'=>$notes]);
     }
-
-
-    /* ***********************************************
-     *  For Testing Purpose
-     * *********************************************** */
-
-    public function sessionAction()
-    {
-
-        /*var_dump($_SESSION);
-         exit();*/
-
-        /*$currentOrder = Order::findByOrderId('ORDS16157389841');
-
-        $arr = array();
-        $arr['course_id']=$currentOrder->course_id;
-        $arr['user_id']=$currentOrder->user_id;
-        $ug = new UserGroup($arr);
-        $ug->firstSubscription();*/
-
-    }
-
-    public function groupAction(){
-        $results = Subject::fetchAllWithLesson(1);
-        //$results = Group::fetchGroupWithSubDetails(1);
-        Helpers::dnd($results);
-    }
-
-    public function testAction(){
-        //var_dump(json_encode(UserGroup::subscription()));
-
-
-        /*var_dump($_SESSION);
-        exit();*/
-
-
-        $results = Content::fetchAllWithUnit(2);
-        var_dump($results);
-        //echo json_encode($result);
-
-        $arr = array();
-        $newKey = 0;
-        foreach ($results as $k=>$v){
-
-            //echo $k;
-            if(!in_array($k,$arr)){
-                $newKey++;
-                $arr[$newKey]['no']=$k;
-                $arr[$newKey]['lessons']=$v;
-            }
-
-        }
-
-        echo '<br><br><br>';
-        var_dump($arr);
-
-
-        echo '<br><br><br>';
-
-        foreach ($arr as $unit){
-
-            echo 'Unit: '.$unit['no'];
-            echo '<br>';
-            if(count($unit['lessons'])>0){
-
-                foreach ($unit['lessons'] as $u){
-
-                    echo $u['title'];
-                    echo '<br>';
-
-                }
-
-            }
-
-        }
-
-    }
-
-    public function newTestAction(){
-
-        /*$results = Content::fetchFileContentWithUnit(2);
-        var_dump($results);*/
-
-        $result = File::getSingle(47);
-        //$result = File::testDelFile('PythonNotesForProfessionals.pdf');
-        var_dump($result);
-
-    }
-
-    public function unattachedFilesAction(){
-
-        $files = File::getUnattachedFiles();
-        var_dump($files);
-
-
-
-    }
-
-    public function testSendingEmailAction(){
-
-        $to = 'getkabirjaiswal@gmail.com';
-        $sub = 'Test Sending Email Action';
-        $txt = 'This is just a test email send for RS Lectures Web App';
-        $htm = '<b><i>This is just a test email send for RS Lectures Web App through New</i></b>';
-
-        Mail::sendNew($to, $sub, $txt, $htm);
-
-    }
-
-    public function testJsPaytmAction(){
-
-        View::renderBlade('home/js_paytm');
-
-    }
-
-    public function showUserAction(){
-
-        $user = Auth::getUser();
-        var_dump($user);
-
-
-    }
-
-    public function showLoginAction(){
-
-        Auth::logout();
-        Flash::addMessage('Confirm password does not match', Flash::DANGER);
-        $this->redirect('/login/index');
-
-
-    }
-
-
 
 }

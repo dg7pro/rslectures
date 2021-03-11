@@ -256,7 +256,7 @@ class AjaxFileContent extends Administered
         if(isset($_POST['id'])){
 
             // Real code for deleting Content Records
-            /*$files = File::getFileWithContent($_POST['id']);
+            $files = File::getFileWithContent($_POST['id']);
             $_file_count = count($files);
 
             if($_file_count > 0) {
@@ -273,10 +273,10 @@ class AjaxFileContent extends Administered
                     $response['message'] = 'Deleted content record permanently';
                 }
 
-            }*/
+            }
 
-            $response['status'] = false;
-            $response['message'] = 'Application says Don\'t delete anything, just change or modify it to continue';
+            /*$response['status'] = false;
+            $response['message'] = 'Application says Don\'t delete anything, just change or modify it to continue';*/
             echo json_encode($response);
 
         }

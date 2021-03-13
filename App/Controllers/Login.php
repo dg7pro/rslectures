@@ -47,14 +47,14 @@ class Login extends Controller
 
             Auth::login($user,$remember_me);
 
-            Flash::addMessage('Login Successful', Flash::SUCCESS);
+            //Flash::addMessage('Login Successful', Flash::SUCCESS);
             //Notification::addMessage($user->id,'Login Successful','You have successfully logged in','mdi mdi-nuke');
             //Notification::save('just_testing',$user->id);
             $this->redirect(Auth::getReturnToPage());
 
         }
         else{
-            Flash::addMessage('Wrong Credentials. Incorrect email or password used', Flash::DANGER);
+            Flash::addMessage('Oops!. Incorrect email or password used', Flash::DANGER);
             View::renderBlade('login/index',['uid'=>$_POST['uid'],'remember_me'=>$remember_me]);
         }
     }

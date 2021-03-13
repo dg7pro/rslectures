@@ -8,7 +8,26 @@
             @include('layouts.partials.flash')
         </div>
 
-        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <div class="mt-3">
+            @if($new_user_flag)
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">What next?</h4>
+                    <ul>
+                       {{-- <li><i class="fas fa-angle-right"></i> Congratulations! You have successfully created and activated your account, What next?</li>--}}
+                        <li><i class="fas fa-angle-right"></i> From the below list of courses given, find the course you want to study </li>
+                        <li><i class="fas fa-angle-right"></i> Click on the <strong><u>Purchase</u></strong> button to pay the fees</li>
+                        <li><i class="fas fa-angle-right"></i> You will be redirected to <strong><u>Paytm Page</u></strong> India's largest and secure Payment Gateway</li>
+
+                    </ul>
+                    <hr>
+                    <p class="mb-0">Continue Learning - from RSLectures.com</p>
+                </div>
+            @endif
+        </div>
+
+
+
+        <div class="pricing-header px-3 py-3 pt-md-3 pb-md-4 mx-auto text-center">
             <h1 class="display-4 text-info">eNotes Available</h1>
             <p class="">Please subscribe to the courses you are studying in. Our study material is built with utmost care so that students
                 can obtain maximum marks out off it. It covers every topic of all the subjects.

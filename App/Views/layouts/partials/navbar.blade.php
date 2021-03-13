@@ -14,11 +14,11 @@
                     <a class="nav-link" href="{{'/account/welcome'}}"><mark> Dashboard</mark></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{'/subscribe/index'}}"><mark> Study Materials</mark></a>
+                    <a class="nav-link" href="{{'/subscribe/index'}}"><mark> Courses</mark></a>
                 </li>
-                <li class="nav-item">
+               {{-- <li class="nav-item">
                     <a class="nav-link" href="{{'/home/catalog'}}"><mark> Catalog</mark></a>
-                </li>
+                </li>--}}
                 {{--<li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>--}}
@@ -47,11 +47,11 @@
                     <a class="nav-link" href="{{'/account/welcome'}}"><mark>Dashboard</mark> </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{'/subscribe/index'}}"><mark> Study Materials</mark></a>
+                    <a class="nav-link" href="{{'/subscribe/index'}}"><mark> Courses</mark></a>
                 </li>
-                <li class="nav-item">
+               {{-- <li class="nav-item">
                     <a class="nav-link" href="{{'/home/catalog'}}"><mark> Catalog</mark></a>
-                </li>
+                </li>--}}
             @endif
         </ul>
 

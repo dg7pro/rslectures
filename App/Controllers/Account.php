@@ -47,7 +47,7 @@ class Account extends Authenticated
         $num = count($courses2);
 
         if(empty($courses2)){
-            Flash::addMessage('Oops! You have not subscribed to any course yet. Please subscribe below:', Flash::DANGER);
+            //Flash::addMessage('Oops! You have not subscribed to any course yet. Please subscribe below:', Flash::DANGER);
             $this->redirect('/Subscribe/index');
         }
         else{

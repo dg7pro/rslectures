@@ -12,7 +12,7 @@ use Core\View;
  * Class Lesson
  * @package App\Controllers
  */
-class Lesson extends Controller
+class Lesson extends Authenticated
 {
 
     /**

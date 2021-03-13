@@ -51,6 +51,7 @@
                             <li><a href="{{'/company/career'}}"><i class="fa fa-angle-right" aria-hidden="true"></i>Careers</a></li>
                             <li><a href="{{'/company/privacy-policy'}}"><i class="fa fa-angle-right" aria-hidden="true"></i>Privacy Policy</a></li>
                             <li><a href="{{'/company/refund-policy'}}"><i class="fa fa-angle-right" aria-hidden="true"></i>Refund Policy</a></li>
+                            <li><a href="{{'/home/catalog'}}"><i class="fa fa-angle-right" aria-hidden="true"></i>Catalog</a></li>
                         </ul>
                     </div>
                 </div>

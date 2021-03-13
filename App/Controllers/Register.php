@@ -57,8 +57,8 @@ class Register extends Controller
             $ug->firstSubscription();*/
 
             // Flash the success message
-            Flash::addMessage('Account Created Successfully');
-            Flash::addMessage('Please check your email to activate your account');
+            /*Flash::addMessage('Account Created Successfully');
+            Flash::addMessage('Please check your email to activate your account');*/
 
 //            $this->redirect('/payment/new');
             //$this->redirect('/Account/welcome');

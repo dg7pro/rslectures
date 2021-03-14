@@ -41,8 +41,9 @@ class Login extends Controller
         if($user){
 
             if(!$user->is_active){
-                Flash::addMessage('Please check your email to activate account', Flash::WARNING);
-                View::renderBlade('login/index',['uid'=>$_POST['uid'],'remember_me'=>$remember_me]);
+                $this->redirect('/login/activate-account?email='.$user->email);
+                //Flash::addMessage('Please check your email to activate account', Flash::WARNING);
+                //View::renderBlade('login/index',['uid'=>$_POST['uid'],'remember_me'=>$remember_me]);
             }
 
             Auth::login($user,$remember_me);
@@ -67,6 +68,13 @@ class Login extends Controller
         Flash::addMessage('Password changed successfully, please login again with new password', Flash::SUCCESS);
 
         View::renderBlade('login/index');
+    }
+
+    public function activateAccountAction(){
+
+//        echo "Activate Account, Resend activation link";
+        $email = $_GET['email'] ?? '';
+        View::renderBlade('login/resend_activation_link',['email'=>$email]);
     }
 
 

@@ -55,7 +55,7 @@ class Subject extends Model
     public static function fetchAllWithLesson($id)
     {
         $sql = "SELECT t1.name, t1.name as sub, t2.title FROM subjects AS t1
-                JOIN contents AS t2 ON t2.subject_id=t1.id
+                LEFT JOIN contents AS t2 ON t2.subject_id=t1.id
                 WHERE t1.group_id = ?
                 ";
 

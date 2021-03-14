@@ -380,6 +380,21 @@ class User extends \Core\Model
      * ***************************************
      * */
 
+    public function processNewActivationCode() :bool
+    {
+        $token = new Token();
+        $this->activation_hash = $token->getHash();             // Saved in users table
+        $this->activation_token = $token->getValue();  // To be send in email
+
+        $sql = "UPDATE users SET activation_hash=? WHERE id=?";
+        $pdo = Model::getDB();
+        $stmt=$pdo->prepare($sql);
+        return $stmt->execute([$this->activation_hash,$this->id]);
+
+    }
+
+
+
     /**
      * @param $password
      * @return bool

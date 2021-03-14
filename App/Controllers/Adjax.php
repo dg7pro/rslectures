@@ -40,18 +40,18 @@ class Adjax extends Administered
 
             if($num>0){
                 foreach($results as $row) {
-                    $data .= '<h5 class="text-primary">Sub'.$row['no'].': '.$row['sub'].'</h5>';
-                    if(count($row['lessons'])>0){
+                    $data .= '<h5 class="text-primary">'.$row['no'].': '.$row['sub'].'</h5>';
+                    /*if(count($row['lessons'])>0){
                         $data .= '<ul>';
                             foreach($row['lessons'] as $ls) {
                                 $data .= ' <li><i class="fas fa-angle-right"></i> '. $ls['title'] .'</li>';
                             }
                         $data .= '</ul><br>';
 
-                    }
+                    }*/
                 }
 
-                $data .='<h5 class="text-primary">++ Plus</h5>
+                $data .='<hr><h5 class="text-primary">+Plus Free</h5>
                         <ul class="text-success mark">
                         <li><i class="fas fa-angle-right"></i> <b>Specimens</b></li>
                         <li><i class="fas fa-angle-right"></i> <b>Model Test Papers</b></li>
@@ -461,7 +461,8 @@ class Adjax extends Administered
                     <th>first name</th>
                     <th>last name</th>                   
                     <th>mobile</th>
-                    <th>email</th>                    
+                    <th>email</th> 
+                    <th>active</th>                                        
                     <th>course</th>                    
                     <th>edit</th></tr>';
 
@@ -474,6 +475,7 @@ class Adjax extends Administered
                 <td>'.$row->last_name.'</td>                
                 <td>'.$row->mobile.'</td>
                 <td>'.$row->email.'</td>
+                <td>'.$row->is_active.'</td>
                 <td><button onclick="getUserCourseInfo('.$row->id.')" type="button" class="mb-1 btn btn-sm btn-success">View</button></td>
                 <td><button onclick="getContentInfo('.$row->id.')" type="button" class="mb-1 btn btn-sm btn-info">Edit</button></td>
                 </tr>';

@@ -299,4 +299,34 @@ class Ajax extends Controller
         }
     }*/
 
+    public function resendActivationEmail(){
+
+        if(isset($_POST['em']) && $_POST['em']!=''){
+
+            if (filter_var($_POST['em'], FILTER_VALIDATE_EMAIL) === false) {
+                echo '<span class="text-danger">Invalid email, please enter proper email</span>';
+            }else{
+                $user = User::findByEmail($_POST['em']);
+                if($user){
+                    if($user->is_active){
+                        echo '<span class="text-success">Your account is already active</span>';
+                    }else{
+                        $flag = $user->processNewActivationCode();
+                        if($flag){
+                            $user->sendActivationEmail();
+                        }
+                        echo '<span class="text-success">Activation link send, please check your email</span>';
+                    }
+
+                }else{
+                    echo '<span class="text-danger">No User found with this email</span>';
+                }
+            }
+
+        }else{
+            echo '<span class="text-danger">Wrong Input</span>';;
+        }
+
+    }
+
 }

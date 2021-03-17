@@ -26,6 +26,7 @@
                             Courses/Groups
                             <button onclick="showNewGroupForm()" type="button" class="mb-1 ml-3 btn btn-sm btn-primary">Add Group +</button>
                             <a href="{{'/admin/change-group-order'}}" class="mb-1 ml-3 btn btn-sm btn-dark">Change Order</a>
+                            <button onclick="showDiscountForm()" type="button" class="mb-1 ml-3 btn btn-sm btn-success">Apply Discount</button>
                         </h2>
                     </div>
                     <div class="card-body">
@@ -41,7 +42,44 @@
 
         </div>
 
-        <!-- Update Group Modal -->
+        <!-- Apply Discount Modal -->
+        <div class="modal fade" id="modal-new-discount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Apply Discount</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+
+                            <div class="form-group">
+                                <label for="new-discount-percent">Discount Percentage:</label>
+
+                                <select class="form-control" id="new-discount-percent">
+                                    {{--<option value="">Select</option>--}}
+                                    @for($i=1;$i<=100;$i++)
+
+                                        <option value="{{$i}}">{{$i}}</option>
+
+                                    @endfor
+                                </select>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="removeDiscount()">Remove Discount</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="applyDiscount()">Apply Discount</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Group Modal -->
         <div class="modal fade" id="modal-new-group" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -288,6 +326,38 @@
             },function (data, status) {
                 console.log(data);
                 $('#modal-group').modal("hide");
+                readRecords();
+            });
+        }
+
+        function showDiscountForm(){
+            $('#modal-new-discount').modal("show");
+        }
+
+        function applyDiscount(){
+
+            var discount = $('#new-discount-percent').val();
+            console.log(discount);
+
+            $.post("/adjax/applyDiscount",{
+                discount:discount
+
+            },function (data, status) {
+                console.log(data);
+                $('#modal-new-discount').modal("hide");
+                readRecords();
+            });
+        }
+
+        function removeDiscount(){
+
+            //console.log(discount);
+
+            $.post("/adjax/removeDiscount",{
+
+            },function (data, status) {
+                console.log(data);
+                $('#modal-new-discount').modal("hide");
                 readRecords();
             });
         }

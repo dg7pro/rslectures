@@ -51,6 +51,24 @@ class Group extends Model
         // TODO :: checking is required very important 3 level deep fetch record
     }
 
+    public static function fetchGroupPriceList(){
+
+        $sql = "SELECT id,name,price FROM groups";
+        $pdo=Model::getDB();
+        $stmt=$pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public static function processDiscount($arr){
+
+        $sql = "UPDATE groups SET discount_rate=?, discount_price=? WHERE id=?";
+        $pdo=Model::getDB();
+        $stmt=$pdo->prepare($sql);
+        return $stmt->execute([$arr['rate'],$arr['price'],$arr['id']]);
+    }
+
     public static function update($arr){
 
         $name = $arr['name'];

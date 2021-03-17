@@ -41,14 +41,14 @@ class Adjax extends Administered
             if($num>0){
                 foreach($results as $row) {
                     $data .= '<h5 class="text-primary">'.$row['no'].': '.$row['sub'].'</h5>';
-                    /*if(count($row['lessons'])>0){
+                    if( count($row['lessons']) > 0){
                         $data .= '<ul>';
                             foreach($row['lessons'] as $ls) {
                                 $data .= ' <li><i class="fas fa-angle-right"></i> '. $ls['title'] .'</li>';
                             }
                         $data .= '</ul><br>';
 
-                    }*/
+                    }
                 }
 
                 $data .='<hr><h5 class="text-primary">+Plus Free</h5>
@@ -89,7 +89,9 @@ class Adjax extends Administered
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Price(INR)</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">dRate</th>
+                    <th scope="col">dPrice</th>
                     <th scope="col">Deactive</th>
                     <th scope="col">Update</th>
                     <th scope="col">Delete</th>
@@ -107,6 +109,8 @@ class Adjax extends Administered
                     <td>'.$row['id'].'</td>
                     <td>'.$row['name'].'<span class="small text-danger mark"><em>'.( $row['open']!=1?' Coming Soon ':'' ).'</em></span></td>
                     <td>Rs. '.$row['price'].' / '.$row['duration'].'</td>
+                    <td>'.$row['discount_rate'].'%</td>
+                    <td>Rs. '.$row['discount_price'].'</td>
                     <td><span class="small text-danger"><em>'.($row['deactive']==1?'Yes':'').'</em></span></td>
                     <td><button onclick="getGroupInfo('.$row['id'].')" type="button" class="mb-1 btn btn-sm btn-info">Edit</button></td>                 
                     <td><button onclick="deleteGroupInfo('.$row['id'].')" type="button" class="mb-1 btn btn-sm btn-danger">Del</button></td>
@@ -140,6 +144,44 @@ class Adjax extends Administered
             echo json_encode($response);
 
         }
+    }
+
+    public function applyDiscount(){
+        if(isset($_POST['discount'])){
+
+            $discount_rate = $_POST['discount'];
+
+            $groups = Group::fetchGroupPriceList();
+
+            foreach($groups as $group){
+                $process[] = '';
+                $discount_price = $group['price'] - $group['price']/100*$discount_rate;
+
+                $process['id'] = $group['id'];
+                $process['price'] = round($discount_price);
+                $process['rate'] = $discount_rate;
+
+                Group::processDiscount($process);
+            }
+        }
+        echo "All groups updated";
+    }
+
+    public function removeDiscount(){
+
+        $groups = Group::fetchGroupPriceList();
+
+        foreach($groups as $group){
+            $process[] = '';
+
+            $process['id'] = $group['id'];
+            $process['price'] = 0;
+            $process['rate'] = 0;
+
+            Group::processDiscount($process);
+        }
+
+        echo "Discount Removed Successfully";
     }
 
     /**

@@ -51,10 +51,19 @@
                             </div>
                             <div class="card-body">
 
-                                <h1 class="card-title pricing-card-title">
-                                    <small class="text-muted"><i class="fas fa-rupee-sign"></i></small> {{$group['price']}}
-                                    <small class="text-muted">/ {{$group['duration']}}</small>
-                                </h1>
+                                <h2 class="card-title pricing-card-title">
+                                    @if($group['discount_rate']==0)
+                                        <small class="text-muted"><i class="fas fa-rupee-sign"></i></small> {{$group['price']}}
+                                        <small class="text-muted">/ {{$group['duration']}}</small>
+                                    @else
+                                        <small class="text-muted"><i class="fas fa-rupee-sign"></i> <s>{{$group['price']}}</s></small>
+
+                                        <br><i class="fas fa-rupee-sign"></i> {{$group['discount_price']}} <small class="text-muted">/ {{$group['duration']}}</small>
+                                        {{-- <small class="text-muted">/ {{$group['duration']}}</small>--}}
+
+
+                                    @endif
+                                </h2>
                                 <ul class="list-unstyled mt-3 mb-4">
                                     <li>All subjects included</li>
                                     <li>Study as you want</li>
@@ -64,19 +73,23 @@
                                 {{--Open Auth check--}}
                                 @if(!$authUser)
 
-                                    <a href="{{'/login/index'}}" role="button" class="btn btn-lg btn-block btn-dark">Purchase</a>
+                                    <a href="{{'/login/index'}}" role="button" class="btn btn-lg btn-block btn-dark">
+                                        @if($group['discount_rate']!=0) <span class="badge badge-pill badge-danger">{{$group['discount_rate'].'% off'}} </span> @endif Purchase</a>
 
                                 @else
 
                                     @if(in_array($group['id'],$subscribed))
                                         {{--<button type="submit" class="btn btn-lg btn-block btn-dark disabled">Subscribe</button>--}}
-                                        <a class="btn btn-lg btn-block btn-dark" href="{{'/page/load?gid='.$group['id']}}" role="button">Learn Now</a>
+                                        <a class="btn btn-lg btn-block btn-dark" href="{{'/page/load?gid='.$group['id']}}" role="button">
+                                            @if($group['discount_rate']!=0) <span class="badge badge-pill badge-danger">{{$group['discount_rate'].'% off'}} </span> @endif Study now</a>
                                     @else
                                         @if(!$group['open'])
-                                            <button onclick="showComingSoon()" type="button" class="btn btn-lg btn-block btn-dark">Coming Soon</button>
+                                            <button onclick="showComingSoon()" type="button" class="btn btn-lg btn-block btn-dark">
+                                                @if($group['discount_rate']!=0) <span class="badge badge-pill badge-danger">{{$group['discount_rate'].'% off'}} </span> @endif Coming Soon</button>
                                         @else
                                             @if($group['deactive'])
-                                                <button class="btn btn-lg btn-block btn-dark disabled" disabled>Purchase</button>
+                                                <button class="btn btn-lg btn-block btn-dark disabled" disabled>
+                                                    @if($group['discount_rate']!=0) <span class="badge badge-pill badge-danger">{{$group['discount_rate'].'% off'}} </span> @endif Purchase</button>
                                             @else
                                                 <form action="{{'/payment/redirect-payment'}}" method="POST">
 
@@ -101,8 +114,9 @@
                                                            value="{{$group['name']}}" hidden >
                                                     <input type="text" id="TXN_AMOUNT"
                                                            name="TXN_AMOUNT" autocomplete="off"
-                                                           value="{{$group['price']}}" hidden >
-                                                    <button type="submit" class="btn btn-lg btn-block btn-dark">Purchase</button>
+                                                           value="{{$group['discount_rate']==0? $group['price'] :$group['discount_price']}}" hidden >
+                                                    <button type="submit" class="btn btn-lg btn-block btn-dark">
+                                                        @if($group['discount_rate']!=0) <span class="badge badge-pill badge-danger">{{$group['discount_rate'].'% off'}} </span> @endif Purchase</button>
                                                 </form>
                                             @endif
                                         @endif

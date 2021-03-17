@@ -884,7 +884,8 @@ class User extends \Core\Model
 
     public function orders(){
 
-        $sql = "SELECT * FROM  orders WHERE user_id=?";
+        //resp_code =01;
+        $sql = "SELECT * FROM  orders WHERE user_id=? AND status='TXN_SUCCESS'";
         $pdo=Model::getDB();
         $stmt=$pdo->prepare($sql);
         $stmt->execute([$this->id]);

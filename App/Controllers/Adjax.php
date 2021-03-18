@@ -44,7 +44,9 @@ class Adjax extends Administered
                     if( count($row['lessons']) > 0){
                         $data .= '<ul>';
                             foreach($row['lessons'] as $ls) {
-                                $data .= ' <li><i class="fas fa-angle-right"></i> '. $ls['title'] .'</li>';
+                                if($ls['title']!=NULL){
+                                    $data .= ' <li><i class="fas fa-angle-right"></i> '. $ls['title'] .'</li>';
+                                }
                             }
                         $data .= '</ul><br>';
 

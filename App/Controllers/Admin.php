@@ -156,10 +156,45 @@ class Admin extends Administered
     /**
      * Show text editor for content editing
      */
+    public function groupAction(){
+
+        $id = $_GET['id'];
+        $group = Group::fetch($id);
+//        var_dump($group);
+        Auth::rememberBackPage();
+        View::renderBlade('admin.group',['content'=>$group]);
+
+    }
+
+    /**
+     *  Save edited content
+     */
+    public function saveGroupAction(){
+
+        if(isset($_POST['update_content'])){
+
+            $result = Group::updateMatter($_POST);
+            if($result){
+                Flash::addMessage('Content Updated Successfully', Flash::SUCCESS);
+                $this->redirect(Auth::getBackToPage());
+            }
+        }else{
+
+            Flash::addMessage('Could not update. Something went wrong', Flash::DANGER);
+            $this->redirect(Auth::getBackToPage());
+        }
+
+    }
+
+
+    /**
+     * Show text editor for content editing
+     */
     public function contentAction(){
 
         $id = $_GET['id'];
         $content = Content::fetch($id);
+        var_dump($content);
         Auth::rememberBackPage();
         View::renderBlade('admin.content',['content'=>$content]);
 

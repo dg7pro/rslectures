@@ -27,6 +27,15 @@ class Group extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function fetchAllVisible(): array
+    {
+        $sql = "SELECT * FROM groups WHERE hidden=0 ORDER BY sno";
+        $pdo=Model::getDB();
+        $stmt=$pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function fetchAllActive(): array
     {
         $sql = "SELECT * FROM groups";
@@ -75,15 +84,30 @@ class Group extends Model
         $descr = $arr['descr'];
         $price = $arr['price'];
         $duration = $arr['duration'];
+        $installment = $arr['installment'];
+        $timings = $arr['timings'];
         $colour = $arr['color'];
+        $hidden = $arr['hidden'];
         $open = $arr['open'];
         $deactive = $arr['deactive'];
         $id = $arr['id'];
 
-        $sql = "UPDATE groups SET name=?, descr=?, price=?, duration=?, color=?, open=?, deactive=? WHERE id=?";
+        $sql = "UPDATE groups SET name=?, descr=?, price=?, duration=?, installment=?, timings=?, color=?, hidden=?, open=?, deactive=? WHERE id=?";
         $pdo=Model::getDB();
         $stmt=$pdo->prepare($sql);
-        return $stmt->execute([$name,$descr,$price,$duration,$colour,$open,$deactive,$id]);
+        return $stmt->execute([$name,$descr,$price,$duration,$installment,$timings,$colour,$hidden,$open,$deactive,$id]);
+
+    }
+
+    public static function updateMatter($arr){
+
+        $gid = $arr['content_id'];
+        $matter = $arr['matter'];
+
+        $sql = "UPDATE groups SET matter=? WHERE id=?";
+        $pdo=Model::getDB();
+        $stmt=$pdo->prepare($sql);
+        return $stmt->execute([$matter,$gid]);
 
     }
 
@@ -103,15 +127,18 @@ class Group extends Model
         $descr = $arr['descr'];
         $price = $arr['price'];
         $duration = $arr['duration'];
+        $installment = $arr['installment'];
+        $timings = $arr['timings'];
         $color = $arr['color'];
+        $hidden = $arr['hidden'];
         $open = $arr['open'];
         $deactive = $arr['deactive'];
 
 
-        $sql = "INSERT INTO groups(name,descr,price,duration,color,open,deactive) VALUES (?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO groups(name,descr,price,duration,installment,timings,color,hidden,open,deactive) VALUES (?,?,?,?,?,?,?,?,?,?)";
         $pdo=Model::getDB();
         $stmt=$pdo->prepare($sql);
-        return $stmt->execute([$name,$descr,$price,$duration,$color,$open,$deactive]);
+        return $stmt->execute([$name,$descr,$price,$duration,$installment,$timings,$color,$hidden,$open,$deactive]);
 
     }
 

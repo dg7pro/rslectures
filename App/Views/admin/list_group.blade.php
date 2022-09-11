@@ -108,11 +108,29 @@
                                     <label for="new-group-duration" class="col-form-label">Duration:</label>
                                     <select class="form-control" id="new-group-duration">
                                         <option value="">Select</option>
+                                        <option value="quarter">Quarter</option>
                                         <option value="sem">Sem</option>
                                         <option value="year">Year</option>
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group form-row">
+                                <div class="col">
+                                    <label for="new-group-installment" class="col-form-label">Installment:</label>
+                                    <input type="text" class="form-control" id="new-group-installment">
+                                </div>
+                                <div class="col">
+                                    <label for="new-group-timings" class="col-form-label">Timings:</label>
+                                    <select class="form-control" id="new-group-timings">
+                                        <option value="">Select</option>
+                                        @for($i=1; $i<=36; $i++)
+                                            <option value="{{$i}}">{{$i}}</option>
+                                        @endfor
+
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="new-group-color">Select Color:</label>
                                 <select class="form-control" id="new-group-color">
@@ -137,16 +155,28 @@
 
                             <div class="form-group form-row">
                                 <div class="col">
-                                    <label for="new-group-open">Registration Open:</label>
-                                    <select class="form-control" id="new-group-open">
+                                    <label for="new-group-hidden">Hidden:</label>
+                                    <select class="form-control" id="new-group-hidden">
                                         <option value="">Select</option>
-                                        <option value=0 selected>Closed (By Default)</option>
-                                        <option value=1>Open</option>
+                                        <option value=0 selected>No (By Default)</option>
+                                        <option value=1>Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group form-row">
+                                <div class="col">
+                                    <label for="new-group-open">Registration Open:</label>
+                                    <select class="form-control" id="new-group-open" disabled>
+                                        <option value="">Select</option>
+                                        <option value=0>Closed</option>
+                                        <option value=1 selected>Open (By Default)</option>
                                     </select>
                                 </div>
                                 <div class="col">
                                     <label for="new-group-deactive">Deactive:</label>
-                                    <select class="form-control" id="new-group-deactive">
+                                    <select class="form-control" id="new-group-deactive" disabled>
                                         <option value="">Select</option>
                                         <option value=0 selected>No</option>
                                         <option value=1>Yes</option>
@@ -194,8 +224,26 @@
                                     <label for="group-duration" class="col-form-label">Duration:</label>
                                     <select class="form-control" id="group-duration">
                                         <option value="">Select</option>
+                                        <option value="quarter">Quarter</option>
                                         <option value="sem">Sem</option>
                                         <option value="year">Year</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-row">
+                                <div class="col">
+                                    <label for="group-installment" class="col-form-label">Installment:</label>
+                                    <input type="text" class="form-control" id="group-installment">
+                                </div>
+                                <div class="col">
+                                    <label for="group-timings" class="col-form-label">Timings:</label>
+                                    <select class="form-control" id="group-timings">
+                                        <option value="">Select</option>
+                                        @for($i=1; $i<=36; $i++)
+                                            <option value="{{$i}}">{{$i}}</option>
+                                        @endfor
+
                                     </select>
                                 </div>
                             </div>
@@ -226,8 +274,19 @@
 
                             <div class="form-group form-row">
                                 <div class="col">
+                                    <label for="group-hidden">Hidden:</label>
+                                    <select class="form-control" id="group-hidden">
+                                        <option value="">Select</option>
+                                        <option value=0 selected>No (By Default)</option>
+                                        <option value=1>Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-row">
+                                <div class="col">
                                     <label for="group-open">Registration Open:</label>
-                                    <select class="form-control" id="group-open">
+                                    <select class="form-control" id="group-open" disabled>
                                         <option value="">Select</option>
                                         <option value=0 selected>Closed (By Default)</option>
                                         <option value=1>Open</option>
@@ -235,7 +294,7 @@
                                 </div>
                                 <div class="col">
                                     <label for="group-deactive">Deactive:</label>
-                                    <select class="form-control" id="group-deactive">
+                                    <select class="form-control" id="group-deactive" disabled>
                                         <option value="">Select</option>
                                         <option value=0>No (By Default)</option>
                                         <option value=1>Yes</option>
@@ -294,7 +353,10 @@
                 $('#group-descr').val(group.descr);
                 $('#group-price').val(group.price);
                 $('#group-duration').val(group.duration);
+                $('#group-installment').val(group.installment);
+                $('#group-timings').val(group.timings);
                 $('#group-color').val(group.color);
+                $('#group-hidden').val(group.hidden);
                 $('#group-open').val(group.open);
                 $('#group-deactive').val(group.deactive);
                 $('#group-id').val(group.id);
@@ -309,7 +371,10 @@
             var descr = $('#group-descr').val();
             var price = $('#group-price').val();
             var duration = $('#group-duration').val();
+            var installment = $('#group-installment').val();
+            var timings = $('#group-timings').val();
             var color = $('#group-color').val();
+            var hidden = $('#group-hidden').val();
             var open = $('#group-open').val();
             var deactive = $('#group-deactive').val();
             var id = $('#group-id').val();
@@ -318,7 +383,10 @@
                 descr:descr,
                 price:price,
                 duration:duration,
+                installment:installment,
+                timings:timings,
                 color:color,
+                hidden:hidden,
                 open:open,
                 deactive:deactive,
                 id:id
@@ -372,7 +440,10 @@
             var descr = $('#new-group-descr').val();
             var price = $('#new-group-price').val();
             var duration = $('#new-group-duration').val();
+            var installment = $('#new-group-installment').val();
+            var timings = $('#new-group-timings').val();
             var color = $('#new-group-color').val();
+            var hidden = $('#new-group-hidden').val();
             var open = $('#new-group-open').val();
             var deactive = $('#new-group-deactive').val();
 
@@ -381,7 +452,10 @@
                 descr:descr,
                 price:price,
                 duration:duration,
+                installment:installment,
+                timings:timings,
                 color:color,
+                hidden:hidden,
                 open:open,
                 deactive:deactive
 

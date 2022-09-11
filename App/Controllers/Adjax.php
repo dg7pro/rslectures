@@ -92,9 +92,9 @@ class Adjax extends Administered
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
-                    <th scope="col">dRate</th>
-                    <th scope="col">dPrice</th>
-                    <th scope="col">Deactive</th>
+                    <th scope="col">Installment</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Visible</th>
                     <th scope="col">Update</th>
                     <th scope="col">Delete</th>
                     <th scope="col">Manage</th>
@@ -109,11 +109,11 @@ class Adjax extends Administered
                 foreach($results as $row) {
                     $data .= '<tr>
                     <td>'.$row['id'].'</td>
-                    <td>'.$row['name'].'<span class="small text-danger mark"><em>'.( $row['open']!=1?' Coming Soon ':'' ).'</em></span></td>
+                    <td><a href="/admin/group?id='.$row['id'].'">'.$row['name'].'</a><span class="small text-danger mark"><em>'.( $row['open']!=1?' Coming Soon ':'' ).'</em></span></td>
                     <td>Rs. '.$row['price'].' / '.$row['duration'].'</td>
-                    <td>'.$row['discount_rate'].'%</td>
-                    <td>Rs. '.$row['discount_price'].'</td>
-                    <td><span class="small text-danger"><em>'.($row['deactive']==1?'Yes':'').'</em></span></td>
+                    <td>Rs. '.$row['installment'].'</td>
+                    <td>'.$row['timings'].' months</td>
+                    <td><span class="small text-success"><em>'.($row['hidden']==0?'Yes':'No').'</em></span></td>
                     <td><button onclick="getGroupInfo('.$row['id'].')" type="button" class="mb-1 btn btn-sm btn-info">Edit</button></td>                 
                     <td><button onclick="deleteGroupInfo('.$row['id'].')" type="button" class="mb-1 btn btn-sm btn-danger">Del</button></td>
                     <td><a href="/admin/list-subject?gid='.$row['id'].'" class="mb-1 btn btn-sm btn-warning">Subjects</a></td>

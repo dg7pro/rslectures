@@ -103,7 +103,7 @@
                     </div>
                     <div class="kilimanjaro_part">
                         <h5>Payment</h5>
-                        <p>Paytm <br> Google Pay</p>
+                        <p><a href="{{'/home/paytm-qr'}}" style="color:inherit;">Paytm</a> <br> <a href="{{'/home/paytm-qr'}}" style="color:inherit;">Google Pay</a></p>
                         {{--<div class="kilimanjaro_works">
                             <a class="kilimanjaro_works_img" href="img/gallery/1.jpg"><img src="img/gallery/1.jpg" alt=""></a>
                             <a class="kilimanjaro_works_img" href="img/gallery/4.jpg"><img src="img/gallery/4.jpg" alt=""></a>

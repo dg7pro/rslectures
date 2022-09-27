@@ -9,7 +9,7 @@
         </div>
 
         <div class="pricing-header px-3 py-3 pt-md-3 pb-md-4 mx-auto text-center">
-            <h1 class="display-4 text-info">Courses Available</h1>
+            <h1 class="display-4 text-info">Courses</h1>
             <p class="">Both the Online and Offline (On-campus) modes are available for the training. Click on the course block
                 to get detailed information about the course.
             </p>
@@ -31,7 +31,8 @@
                             <h2 class="card-title pricing-card-title">
                                 @if($group['discount_rate']==0)
                                     <small class="text-muted"><i class="fas fa-rupee-sign"></i></small> {{$group['price']}}
-                                    <small class="text-muted">/ {{$group['duration']}}</small>
+                                    {{--<small class="text-muted">/ {{$group['duration']}}</small>--}}
+                                    <small class="text-muted">/-</small>
                                 @else
                                     <small class="text-muted"><i class="fas fa-rupee-sign"></i> <s>{{$group['price']}}</s></small>
 
@@ -46,7 +47,8 @@
                                 <li>Expert lecturers</li>
                                 <li>Monthly instalments</li>
                                 <li>Doubt sessions</li>
-                                <li>e-Notes</li>
+                                {{--<li>e-Notes</li>--}}
+                                <li>{{$group['timings'].' month course'}}</li>
                             </ul>
 
                             <a class="btn btn-lg btn-block btn-dark" href="{{'/course/details?id='.$group['id']}}" role="button">Course Details</a>

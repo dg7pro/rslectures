@@ -22,12 +22,14 @@
 
             <br>
 
-            <a href="https://wa.me/7565097233?text=I'm%20want%20to%20take%20admission%20in%20{{$group['name']}}%20course" target="_blank"
+            <a href="https://wa.me/9453177545?text=I%20want%20to%20take%20admission%20in%20{{$group['name']}}%20course, please provide me more information" target="_blank"
                class="btn btn-lg btn-success" role="button" aria-pressed="true"><i class="fab fa-whatsapp"> </i> Chat directly to Executive</a>
 
         </div>
 
     </div>
+
+    @include('layouts.footer2')
 
 @endsection
 

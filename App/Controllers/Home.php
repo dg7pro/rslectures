@@ -71,8 +71,18 @@ class Home extends Controller
      */
     public function catalogAction(){
 
-        $notes = Group::fetchAll();
+        $notes = Group::fetchAllVisible();
         View::renderBlade('home/catalog',['eNotes'=>$notes]);
+    }
+
+    /**
+     * Show catalog page
+     *
+     * @return void
+     */
+    public function paytmQRAction(){
+
+        View::renderBlade('home/paytm_qr');
     }
 
 }

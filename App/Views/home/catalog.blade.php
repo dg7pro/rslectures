@@ -70,9 +70,9 @@
                                         <td>
                                             {{$eNote['name']}}
                                             @if($eNote['open'])
-                                                <span class="small text-success mark"><em>{{'(eNotes Available)'}}</em></span>
+                                                <span class="small text-success mark"><em>{{'(Open)'}}</em></span>
                                             @else
-                                                <span class="small text-success mark"><em>{{'(eNotes Available)'}}</em></span>
+                                                <span class="small text-success mark"><em>{{'(Open)'}}</em></span>
                                             @endif
 
                                         </td>

@@ -18,7 +18,8 @@
             with comfort and safety of home. When government has taken initiative of Digital India, e-Learning is the
             best choice for students of 21st century.
          </p>
-         <a class="btn btn-dark" href="{{'/register/index'}}">Register/ Signup</a>
+         {{--<a class="btn btn-dark" href="{{'/register/index'}}">Register/ Signup</a>--}}
+         <a class="btn btn-dark" href="{{'/courses'}}">Courses Available</a>
       </div>
       <div class="product-device shadow-sm d-none d-md-block"></div>
       <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>

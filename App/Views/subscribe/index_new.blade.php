@@ -10,8 +10,8 @@
 
         <div class="pricing-header px-3 py-3 pt-md-3 pb-md-4 mx-auto text-center">
             <h1 class="display-4 text-info">Courses</h1>
-            <p class="">Both the Online and Offline (On-campus) modes are available for the training. Click on the course block
-                to get detailed information about the course.
+            <p class="">Both the Online and Offline (On-campus) modes are available for the training. Click on the course details
+                to get more information about the course.
             </p>
         </div>
 

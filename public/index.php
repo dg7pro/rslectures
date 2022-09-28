@@ -42,6 +42,7 @@ $router = new Core\Router();
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('login', ['controller' =>'Account','action'=>'login']);
 $router->add('admin', ['controller' =>'Admin','action'=>'dashboard']);
+$router->add('courses', ['controller' =>'Subscribe','action'=>'index']);
 $router->add('{controller}/{action}');
 //$router->add('{controller}/{action}/{un:[a-zA-Z0-9-\.]+}');
 //$router->add('{controller}/{action}/{pid:([A-Z]{2}[0-9]{5})+}');

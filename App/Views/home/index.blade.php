@@ -32,8 +32,8 @@
            <h2 class="text-warning">About R.S. Lectures</h2>
            <p>This website is dedicated to online courses and lectures. Online mode of education is cheaper from
               student’s point of views. It is faster also. The various courses available on this website is designed
-              and drafted in such a way that students get maximum about the subject matter in lesser effort. In year 2020, during the
-              Corona Lockdown periods, we decided to go online and provide e-learning service, to our students through live online classes & various other e-learning modes such as docs, pdfs, videos etc.
+              and drafted in such a way that students get maximum about the subject matter in lesser effort. In the digital
+              era, we decided to go online and provide e-learning service, to our students through live online classes & various other e-learning modes such as docs, pdfs, videos etc.
               on their demands. Our courses include a bunch of technical & regular courses
            </p>
            <p>
